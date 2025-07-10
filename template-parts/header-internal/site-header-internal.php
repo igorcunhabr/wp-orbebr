@@ -23,6 +23,14 @@ $card_data = [
 ];
 
 // ===================================================================
+// [SISTEMA DE TÍTULO DINÂMICO]
+// Define o título da página com prioridade: ACF > Global > Fallback
+// ===================================================================
+
+// Obtém o título da página usando a função helper
+$page_title = ThemeHelpers::obter_titulo_pagina();
+
+// ===================================================================
 // [INÍCIO DO HTML]
 // Marcações para apresentação do card do post
 // ===================================================================
@@ -32,6 +40,6 @@ $card_data = [
     <?php get_template_part('template-parts/header/site-header'); ?>
     <h2
         class="text-center text-white text-[24px] lg:text-[44px] font-medium pb-4 lg:pb-8 w-full absolute left-0 bottom-0">
-        titulo da pagina
+        <?php echo esc_html($page_title); ?>
     </h2>
 </div>

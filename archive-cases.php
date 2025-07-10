@@ -4,6 +4,9 @@
  * Template para exibir o arquivo do post type personalizado "cases".
  */
 
+// Define o título personalizado para o header interno
+ThemeHelpers::definir_titulo_pagina('Cases');
+
 get_header();
 
 // ===================================================================

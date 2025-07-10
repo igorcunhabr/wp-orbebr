@@ -4,6 +4,9 @@ if (!defined('ABSPATH')) exit;
  * Template para exibir o arquivo do post type personalizado "blogs".
  */
 
+// Define o título personalizado para o header interno
+ThemeHelpers::definir_titulo_pagina('Blogs');
+
 get_header();
 
 // ===================================================================

@@ -4,6 +4,9 @@
  * Template para exibir o arquivo do post type personalizado "teams".
  */
 
+// Define o título personalizado para o header interno
+ThemeHelpers::definir_titulo_pagina('Trabalhe com a gente');
+
 get_header();
 
 // ===================================================================

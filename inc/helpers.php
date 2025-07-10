@@ -178,6 +178,103 @@ class ThemeHelpers
   }
 
   /**
+   * Define o título personalizado da página para o header interno
+   *
+   * @param string $titulo Título personalizado da página
+   * @return void
+   */
+  public static function definir_titulo_pagina($titulo)
+  {
+    if (!empty($titulo)) {
+      $GLOBALS['custom_page_title'] = sanitize_text_field($titulo);
+    }
+  }
+
+  /**
+   * Obtém o título da página com fallback inteligente
+   *
+   * @return string Título da página
+   */
+  public static function obter_titulo_pagina()
+  {
+    // 1. Verifica se existe uma variável global definida (maior prioridade)
+    $page_title = $GLOBALS['custom_page_title'] ?? null;
+
+    // 2. Se não houver variável global, verifica campo ACF 'titulo_pagina'
+    if (!$page_title) {
+      $page_title = self::obter_campo_acf('titulo_pagina');
+    }
+
+    // 3. Se não houver ACF, verifica campo ACF 'titulo_header'
+    if (!$page_title) {
+      $page_title = self::obter_campo_acf('titulo_header');
+    }
+
+    // 4. Fallback: usa o título da página/post atual
+    if (!$page_title) {
+      if (is_archive()) {
+        $page_title = get_the_archive_title();
+        // Remove prefixos comuns do WordPress como "Arquivos:", "Categoria:", etc.
+        $page_title = self::limpar_prefixos_archive($page_title);
+      } elseif (is_search()) {
+        $page_title = 'Resultados da busca';
+      } elseif (is_404()) {
+        $page_title = 'Página não encontrada';
+      } else {
+        $page_title = get_the_title();
+      }
+    }
+
+    // Remove tags HTML do título (caso venha do WordPress)
+    return wp_strip_all_tags($page_title);
+  }
+
+  /**
+   * Remove prefixos comuns do WordPress dos títulos de archive
+   *
+   * @param string $titulo Título com prefixo
+   * @return string Título limpo
+   */
+  private static function limpar_prefixos_archive($titulo)
+  {
+    // Lista de prefixos comuns do WordPress para remover
+    $prefixos = [
+      'Arquivos: ',
+      'Arquivo: ',
+      'Categoria: ',
+      'Categorias: ',
+      'Tag: ',
+      'Tags: ',
+      'Autor: ',
+      'Autores: ',
+      'Ano: ',
+      'Mês: ',
+      'Dia: ',
+      'Archives: ',
+      'Archive: ',
+      'Category: ',
+      'Categories: ',
+      'Tag: ',
+      'Tags: ',
+      'Author: ',
+      'Authors: ',
+      'Year: ',
+      'Month: ',
+      'Day: '
+    ];
+
+    // Remove cada prefixo se encontrado
+    foreach ($prefixos as $prefixo) {
+      if (strpos($titulo, $prefixo) === 0) {
+        $titulo = substr($titulo, strlen($prefixo));
+        break; // Remove apenas o primeiro prefixo encontrado
+      }
+    }
+
+    return trim($titulo);
+  }
+
+  /**
    * Sanitiza e valida dados de entrada
    *
    * @param mixed  $data    Dados a serem sanitizados
