@@ -38,7 +38,7 @@ $template_uri = get_template_directory_uri();
           <div class="md:grid-cols-3 lg:grid-cols-4 gallery grid grid-cols-2 gap-5 mb-8">
             <?php foreach ($post_data['gallery'] as $image) : ?>
               <div class="relative rounded-[10px] h-[180px] overflow-hidden">
-                <a href="<?php echo $image['full_url']; ?>" class="glightbox">
+                <a data-fslightbox="gallery" href="<?php echo $image['full_url']; ?>">
                   <img src="<?php echo $image['thumb_url']; ?>"
                     alt="<?php echo $image['alt']; ?>"
                     class="object-cover w-full h-full">
@@ -49,7 +49,7 @@ $template_uri = get_template_directory_uri();
           </div>
         <?php elseif (!empty($post_data['cover_image']['url'])) : ?>
           <div class="rounded-[10px] h-[300px] lg:h-[480px] overflow-hidden mb-8">
-            <a href="<?php echo $post_data['cover_image']['url']; ?>" class="glightbox">
+            <a data-fslightbox="gallery" href="<?php echo $post_data['cover_image']['url']; ?>">
               <img src="<?php echo $post_data['cover_image']['url']; ?>"
                 alt="<?php echo $post_data['cover_image']['alt']; ?>"
                 class="object-cover w-full h-full">
