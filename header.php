@@ -16,10 +16,11 @@
   <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body class="<?php echo obter_body_classes_com_contexto("antialiased"); ?>">
 
   <?php
   // Verificação dinâmica para escolher o header correto
+  // eslint-disable-next-line
   $is_home = is_front_page() || is_home();
 
   if ($is_home) {

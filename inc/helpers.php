@@ -222,6 +222,91 @@ class ThemeHelpers
   {
     return get_template_directory_uri();
   }
+
+  /**
+   * Obtém classes personalizadas para o elemento body
+   * Combina classes do WordPress com classes customizadas do tema
+   *
+   * @param string|array $classes_adicionais Classes adicionais para incluir
+   * @return string String com todas as classes aplicadas
+   */
+  public static function get_body_classes($classes_adicionais = '')
+  {
+    // Classes base do tema
+    $classes_base = ['antialiased'];
+
+    // Classes do WordPress (body_class())
+    $wp_classes = get_body_class();
+
+    // Classes adicionais (pode ser string ou array)
+    $classes_extra = [];
+    if (!empty($classes_adicionais)) {
+      if (is_string($classes_adicionais)) {
+        $classes_extra = array_filter(array_map('trim', explode(' ', $classes_adicionais)));
+      } elseif (is_array($classes_adicionais)) {
+        $classes_extra = array_filter($classes_adicionais);
+      }
+    }
+
+    // Combina todas as classes
+    $todas_classes = array_merge($classes_base, $wp_classes, $classes_extra);
+
+    // Remove duplicatas e valores vazios
+    $todas_classes = array_unique(array_filter($todas_classes));
+
+    // Retorna como string
+    return implode(' ', $todas_classes);
+  }
+
+  /**
+   * Obtém classes do body com contexto da página
+   * Adiciona classes condicionais baseadas no tipo de página
+   *
+   * @param string|array $classes_adicionais Classes adicionais para incluir
+   * @return string String com todas as classes aplicadas
+   */
+  public static function get_body_classes_with_context($classes_adicionais = '')
+  {
+    $classes_contextuais = [];
+
+    // Classes baseadas no tipo de página
+    if (is_front_page()) {
+      $classes_contextuais[] = 'page-home';
+    } elseif (is_single()) {
+      $classes_contextuais[] = 'page-single';
+      $classes_contextuais[] = 'post-type-' . get_post_type();
+    } elseif (is_archive()) {
+      $classes_contextuais[] = 'page-archive';
+      $classes_contextuais[] = 'archive-' . get_post_type();
+    } elseif (is_page()) {
+      $classes_contextuais[] = 'page-static';
+    } elseif (is_404()) {
+      $classes_contextuais[] = 'page-error';
+      $classes_contextuais[] = 'error-404';
+    } elseif (is_search()) {
+      $classes_contextuais[] = 'page-search';
+    }
+
+    // Classes baseadas no estado do usuário
+    if (is_user_logged_in()) {
+      $classes_contextuais[] = 'user-logged-in';
+    } else {
+      $classes_contextuais[] = 'user-logged-out';
+    }
+
+    // Classes baseadas no dispositivo (se necessário)
+    if (wp_is_mobile()) {
+      $classes_contextuais[] = 'device-mobile';
+    } else {
+      $classes_contextuais[] = 'device-desktop';
+    }
+
+    // Combina classes contextuais com as adicionais
+    $todas_classes_adicionais = array_merge($classes_contextuais, (array) $classes_adicionais);
+
+    // Chama a função principal
+    return self::get_body_classes($todas_classes_adicionais);
+  }
 }
 
 // ===================================================================
@@ -267,4 +352,20 @@ function criar_query($post_type, $posts_per_page = 8, $args_extras = [])
 function obter_redes_sociais($networks_config = [])
 {
   return ThemeHelpers::obter_redes_sociais($networks_config);
+}
+
+/**
+ * Função global para obter classes do body
+ */
+function obter_body_classes($classes_adicionais = '')
+{
+  return ThemeHelpers::get_body_classes($classes_adicionais);
+}
+
+/**
+ * Função global para obter classes do body com contexto
+ */
+function obter_body_classes_com_contexto($classes_adicionais = '')
+{
+  return ThemeHelpers::get_body_classes_with_context($classes_adicionais);
 }
