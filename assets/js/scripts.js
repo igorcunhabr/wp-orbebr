@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const menuButton = document.getElementById("js-open-menu");
   const mobileMenu = document.getElementById("mobile-menu");
-  const menuSpans = menuButton?.querySelectorAll("span");
 
   if (menuButton && mobileMenu) {
     menuButton.addEventListener("click", function () {
@@ -23,8 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
         mobileMenu.setAttribute("aria-hidden", "true");
         menuButton.setAttribute("aria-expanded", "false");
         document.body.classList.remove("menu-open");
-
-        // Resetar ícone do menu - controlado pelo CSS via aria-expanded
       } else {
         // Abrir menu
         mobileMenu.classList.remove("-translate-x-full");
@@ -32,9 +29,6 @@ document.addEventListener("DOMContentLoaded", function () {
         mobileMenu.setAttribute("aria-hidden", "false");
         menuButton.setAttribute("aria-expanded", "true");
         document.body.classList.add("menu-open");
-
-        // Animar ícone do menu - agora controlado pelo CSS
-        // O CSS já aplica as transformações necessárias via aria-expanded
       }
     });
 
@@ -49,8 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
           mobileMenu.setAttribute("aria-hidden", "true");
           menuButton.setAttribute("aria-expanded", "false");
           document.body.classList.remove("menu-open");
-
-          // Resetar ícone do menu - controlado pelo CSS via aria-expanded
         }, 100);
       });
     });
@@ -66,13 +58,6 @@ document.addEventListener("DOMContentLoaded", function () {
         mobileMenu.setAttribute("aria-hidden", "true");
         menuButton.setAttribute("aria-expanded", "false");
         document.body.classList.remove("menu-open");
-
-        // Resetar ícone do menu
-        if (menuSpans) {
-          menuSpans.forEach((span) => {
-            span.classList.remove("rotate-45", "-rotate-45", "opacity-0");
-          });
-        }
       }
     });
 
@@ -88,13 +73,6 @@ document.addEventListener("DOMContentLoaded", function () {
         mobileMenu.setAttribute("aria-hidden", "true");
         menuButton.setAttribute("aria-expanded", "false");
         document.body.classList.remove("menu-open");
-
-        // Resetar ícone do menu
-        if (menuSpans) {
-          menuSpans.forEach((span) => {
-            span.classList.remove("rotate-45", "-rotate-45", "opacity-0");
-          });
-        }
       }
     });
   }
@@ -118,30 +96,6 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ===================================================================
-  // [ANIMAÇÕES NO SCROLL]
-  // Adiciona animações quando elementos entram no viewport
-  // ===================================================================
-
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: "0px 0px -50px 0px",
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("animate-fade-in");
-        observer.unobserve(entry.target);
-      }
-    });
-  }, observerOptions);
-
-  // Observar elementos com classe de animação
-  document.querySelectorAll(".animate-on-scroll").forEach((el) => {
-    observer.observe(el);
-  });
-
-  // ===================================================================
   // [LAZY LOADING]
   // Implementa lazy loading para imagens
   // ===================================================================
@@ -151,15 +105,12 @@ document.addEventListener("DOMContentLoaded", function () {
       if (entry.isIntersecting) {
         const img = entry.target;
         img.src = img.dataset.src;
-        img.classList.remove("opacity-0");
-        img.classList.add("opacity-100");
         imageObserver.unobserve(img);
       }
     });
   });
 
   document.querySelectorAll("img[data-src]").forEach((img) => {
-    img.classList.add("opacity-0", "transition-opacity", "duration-300");
     imageObserver.observe(img);
   });
 
@@ -183,9 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "focus:outline-none",
         "focus:ring-2",
         "focus:ring-primary",
-        "focus:border-transparent",
-        "transition-all",
-        "duration-200"
+        "focus:border-transparent"
       );
 
       // Adicionar label flutuante se necessário
@@ -219,15 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ===================================================================
 
   document.querySelectorAll(".card").forEach((card) => {
-    card.classList.add(
-      "bg-white",
-      "rounded-lg",
-      "shadow-md",
-      "p-6",
-      "hover:shadow-lg",
-      "transition-shadow",
-      "duration-300"
-    );
+    card.classList.add("bg-white", "rounded-lg", "shadow-md", "p-6");
   });
 
   // ===================================================================
@@ -269,7 +210,6 @@ document.addEventListener("DOMContentLoaded", function () {
           content.includes(searchTerm)
         ) {
           post.style.display = "block";
-          post.classList.add("animate-fade-in");
           hasVisiblePosts = true;
         } else {
           post.style.display = "none";
