@@ -1,0 +1,109 @@
+/* Tailwind CSS 4 Customizations */
+
+/* Custom Fonts - Filson Pro Family */
+@font-face {
+  font-family: "Filson Pro";
+  src: url("../fonts/FilsonProLight.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Filson Pro";
+  src: url("../fonts/FilsonProRegular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Filson Pro";
+  src: url("../fonts/FilsonProBook.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Filson Pro";
+  src: url("../fonts/FilsonProMedium.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Custom Colors */
+@theme {
+  --color-primary: #da373d;
+  --color-secondary: #1f2937;
+  --color-accent: #3b82f6;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+}
+
+/* Custom Fonts */
+@theme {
+  --font-family-sans: "Filson Pro", system-ui, sans-serif;
+  --font-family-serif: Georgia, serif;
+  --font-family-mono: "Monaco", "Consolas", monospace;
+}
+
+/* Custom Font Weights */
+@theme {
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+}
+
+/* Custom Spacing */
+@theme {
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+}
+
+/* Custom Breakpoints */
+@theme {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* Custom Utilities */
+@layer utilities {
+  html {
+    font-family: var(--font-family-sans);
+    /* background-color: #000; */
+  }
+
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+
+  ::-webkit-scrollbar * {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ffd530 !important;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+}
+
+/* Custom Components */
+@layer components {
+}
