@@ -1,4 +1,5 @@
 <?php
+if (!defined('ABSPATH')) exit;
 
 /**
  * Template para exibir o arquivo do post type personalizado "certificacoes".
@@ -11,7 +12,7 @@ get_header();
 // Carregamento inicial e verificações de templates
 // ===================================================================
 
-$paged = get_query_var('paged') ? get_query_var('paged') : 1;
+$paged = get_query_var('paged') ?: 1;
 $cert_query = criar_query_otimizada('certificacoes', 8, ['paged' => $paged]);
 
 // Verifica se o card de certificação existe para evitar erro em tempo de execução
