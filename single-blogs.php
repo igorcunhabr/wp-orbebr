@@ -34,10 +34,6 @@ $template_uri = get_template_directory_uri();
 ?>
     <div class="lg:my-20 container my-10">
       <div class="max-w-[900px] mx-auto">
-        <h1 class="text-3xl lg:text-4xl font-medium text-black mb-6"><?php the_title(); ?></h1>
-        <time datetime="<?php echo esc_attr($post_data['date_iso']); ?>" class="text-gray-600 mb-8 block">
-          <?php echo esc_html($post_data['date_display']); ?>
-        </time>
         <?php if (!empty($post_data['gallery']) && count($post_data['gallery']) > 1) : ?>
           <div class="md:grid-cols-3 lg:grid-cols-4 gallery grid grid-cols-2 gap-5 mb-8">
             <?php foreach ($post_data['gallery'] as $image) : ?>
