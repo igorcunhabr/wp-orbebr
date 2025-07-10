@@ -4,8 +4,8 @@ Este componente foi criado para centralizar e padronizar a paginação em todo o
 
 ## 📁 Arquivos Criados
 
+- `template-parts/pagination-simple.php` - Componente de paginação Tailwind CSS
 - `template-parts/pagination.php` - Componente completo com mais opções
-- `template-parts/pagination-simple.php` - Versão simplificada (recomendada)
 - `inc/helpers.php` - Funções helper adicionadas
 
 ## 🚀 Como Usar
@@ -21,6 +21,12 @@ renderizar_paginacao($minha_query);
 
 // Com argumentos personalizados
 renderizar_paginacao($minha_query, [
+    'prev_text' => '← Anterior',
+    'next_text' => 'Próximo →'
+]);
+
+// Com argumentos personalizados
+renderizar_paginacao($query, [
     'prev_text' => '← Anterior',
     'next_text' => 'Próximo →'
 ]);
@@ -76,26 +82,22 @@ $args = [
 ];
 ```
 
-### Estilos CSS
+### Estilos Tailwind CSS
 
-O componente usa as classes CSS já definidas em `assets/css/tailwind-custom.css`:
+O componente usa classes Tailwind CSS inline para máxima flexibilidade e responsividade:
 
-```css
-.pagination {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
+**Características:**
 
-.pagination a,
-.pagination span {
-  /* Estilos dos links e números */
-}
+- **Responsivo**: Adapta-se automaticamente a diferentes tamanhos de tela
+- **Centralizado**: Sempre centralizado em todas as telas
+- **Acessível**: Inclui labels ARIA e focus states
+- **Consistente**: Usa as cores do tema (âmbar #f59e0b)
 
-.pagination .current {
-  /* Estilo da página atual */
-}
-```
+**Responsividade:**
+
+- **Mobile**: Botões menores, texto oculto nos botões de navegação
+- **Desktop**: Botões maiores, texto visível nos botões de navegação
+- **Sempre centralizada** em todas as telas
 
 ## 🔧 Funcionalidades
 
@@ -143,9 +145,7 @@ renderizar_paginacao($query);
 // Paginação personalizada para uma seção específica
 renderizar_paginacao($query, [
     'prev_text' => '← Voltar',
-    'next_text' => 'Avançar →',
-    'mid_size'  => 3,
-    'end_size'  => 2
+    'next_text' => 'Avançar →'
 ]);
 ?>
 ```
