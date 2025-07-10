@@ -8,6 +8,17 @@ Tema WordPress personalizado para a OrbeBR, desenvolvido com foco em performance
 
 Este tema foi totalmente refatorado para adotar uma arquitetura moderna, orientada a objetos e baseada em helpers reutilizáveis. O código está padronizado, seguro, pronto para internacionalização e fácil de manter e evoluir.
 
+### ✨ Principais Características
+
+- **Arquitetura Orientada a Objetos**: Classes organizadas para configuração, helpers, queries e SEO
+- **Configuração Centralizada**: Todas as configurações do tema em um único local
+- **Helpers Reutilizáveis**: Funções auxiliares para operações comuns
+- **SEO Dinâmico**: Sistema avançado de SEO com meta tags automáticas
+- **Sistema de Títulos Dinâmicos**: 4 níveis de prioridade para títulos de páginas
+- **Componentização**: Cards e partes do layout organizados em template-parts
+- **Segurança**: Sanitização de dados e proteção contra vulnerabilidades
+- **Performance**: Queries otimizadas e assets organizados
+
 ---
 
 ## 🏗️ Estrutura do Projeto
@@ -16,21 +27,37 @@ Este tema foi totalmente refatorado para adotar uma arquitetura moderna, orienta
 wp-orbebr/
 ├── assets/
 │   ├── css/
+│   │   ├── swiper.min.css
+│   │   └── tailwind-custom.css
 │   ├── js/
+│   │   ├── swiper.min.js
+│   │   ├── fslightbox.js
+│   │   ├── svg-inject.min.js
+│   │   ├── scrollreveal.min.js
+│   │   └── scripts.js
 │   ├── fonts/
+│   │   ├── FilsonProBook.woff2
+│   │   ├── FilsonProLight.woff2
+│   │   ├── FilsonProMedium.woff2
+│   │   └── FilsonProRegular.woff2
 │   └── img/
+│       ├── logo.svg
+│       ├── favicon.png
+│       ├── bg-body.png
+│       ├── bg-section.png
+│       └── icons/
 ├── inc/
-│   ├── acf-options.php
-│   ├── assets.php
-│   ├── cleanup.php
-│   ├── config.php         # Configuração centralizada do tema
-│   ├── custom-post-types.php
-│   ├── editor.php
-│   ├── helpers.php        # Helpers e utilitários globais
-│   ├── menus.php
-│   ├── queries.php        # Helpers para queries WP
-│   ├── seo.php            # SEO dinâmico
-│   ├── uploads.php
+│   ├── config.php              # Configuração centralizada do tema
+│   ├── helpers.php             # Helpers e utilitários globais
+│   ├── queries.php             # Helpers para queries WordPress
+│   ├── custom-post-types.php   # Registro de Custom Post Types
+│   ├── seo.php                 # SEO dinâmico e meta tags
+│   ├── assets.php              # Gerenciamento de CSS/JS
+│   ├── cleanup.php             # Limpeza e otimizações
+│   ├── uploads.php             # Configurações de upload
+│   ├── editor.php              # Personalização do editor
+│   ├── menus.php               # Registro de menus
+│   └── acf-options.php         # Configurações ACF
 ├── template-parts/
 │   ├── content/
 │   │   ├── card-blog.php
@@ -38,86 +65,133 @@ wp-orbebr/
 │   │   ├── card-certificacoes.php
 │   │   ├── card-clientes.php
 │   │   └── card-team.php
-│   ├── footer/
 │   ├── header/
-│   └── header-internal/
-├── 404.php
+│   │   └── site-header.php
+│   ├── header-internal/
+│   │   └── site-header-internal.php
+│   ├── footer/
+│   │   └── site-footer.php
+│   └── pagination/
+│       ├── pagination.php
+│       ├── pagination-simple.php
+│       └── exemplo-paginacao.php
 ├── archive-blogs.php
 ├── archive-cases.php
 ├── archive-certificacoes.php
 ├── archive-clientes.php
 ├── archive-teams.php
-├── footer.php
-├── functions.php
-├── header.php
-├── page-home.php
 ├── single-blogs.php
 ├── single-cases.php
-├── style.css
-└── ...
+├── page-home.php
+├── 404.php
+├── header.php
+├── footer.php
+├── functions.php
+└── style.css
 ```
 
 ---
 
-## 🧩 Arquitetura e Boas Práticas
+## 🧩 Arquitetura e Classes Principais
 
-- **Helpers e Classes**: Toda a lógica de negócio e utilitários está centralizada em helpers (`inc/helpers.php`, `inc/queries.php`, etc.) e classes (`ThemeHelpers`, `ThemeQueries`, `ThemeSEO`, `ThemeConfig`, etc.), facilitando reuso e manutenção.
-- **Configuração Centralizada**: O arquivo `inc/config.php` concentra todas as configurações do tema (assets, menus, SEO, etc.), tornando fácil alterar comportamentos globais.
-- **Internacionalização**: Todos os textos fixos usam funções de tradução (`__()`, `_e()`, etc.), prontos para multi-idioma.
-- **Sanitização e Segurança**: Todos os dados vindos do banco, ACF ou usuário são sanitizados com `esc_html`, `esc_url`, `esc_attr`, `wp_kses_post`.
-- **Fallbacks Inteligentes**: Imagens e campos sempre têm fallback para evitar quebras visuais.
-- **Paginação Padronizada**: Uso de `paginate_links` para melhor acessibilidade e SEO.
-- **Evita Funções Depreciadas**: Não utiliza `query_posts` ou práticas antigas do WP.
-- **Componentização**: Todos os cards e partes do layout estão em `template-parts/` para fácil reuso.
+### 1. **ThemeConfig** (`inc/config.php`)
+
+Classe centralizada para todas as configurações do tema:
+
+```php
+// Configurações gerais
+ThemeConfig::$theme_config
+
+// Configurações de assets (CSS/JS)
+ThemeConfig::$assets_config
+
+// Configurações de menus
+ThemeConfig::$menus_config
+
+// Configurações de redes sociais
+ThemeConfig::$social_networks_config
+
+// Configurações de posts por página
+ThemeConfig::$posts_per_page_config
+
+// Configurações de SEO
+ThemeConfig::$seo_config
+```
+
+### 2. **ThemeHelpers** (`inc/helpers.php`)
+
+Classe com funções auxiliares reutilizáveis:
+
+- `obter_imagem_post()` - Imagem com fallback inteligente
+- `obter_campo_acf()` - Campo ACF com fallback seguro
+- `criar_query()` - Query WordPress otimizada
+- `obter_redes_sociais()` - Links de redes sociais organizados
+- `renderizar_paginacao()` - Paginação padronizada
+- `definir_titulo_pagina()` - Sistema de títulos dinâmicos
+- `montar_link_whatsapp()` - Link WhatsApp com ACF
+
+### 3. **ThemeQueries** (`inc/queries.php`)
+
+Classe especializada em queries WordPress:
+
+- `criar_query_otimizada()` - Query com performance otimizada
+- `obter_posts_por_tipo()` - Posts por tipo com configurações
+- `obter_posts_relacionados()` - Posts relacionados
+- `obter_posts_em_destaque()` - Posts em destaque
+
+### 4. **ThemeSEO** (`inc/seo.php`)
+
+Classe para SEO dinâmico:
+
+- Meta tags automáticas
+- Open Graph e Twitter Cards
+- Títulos e descrições dinâmicas
+- Imagens SEO automáticas
+
+### 5. **CustomPostTypes** (`inc/custom-post-types.php`)
+
+Classe para gerenciamento de CPTs:
+
+**CPTs Registrados:**
+
+- `clientes` - Clientes da empresa
+- `certificacoes` - Certificações e credenciais
+- `cases` - Cases de sucesso
+- `teams` - Time de especialistas
+- `blogs` - Posts do blog
+- `banners` - Banners promocionais
+- `contatos` - Informações de contato
+- `trabalhe-conosco` - Oportunidades de trabalho
+- `servicos` - Serviços oferecidos
 
 ---
 
-## 🛠️ Como Manter e Evoluir
+## 🎯 Sistema de Títulos Dinâmicos
 
-### 1. **Adicionar/Alterar Custom Post Types**
+O tema possui um sistema avançado de títulos dinâmicos com **4 níveis de prioridade**:
 
-- Edite `inc/custom-post-types.php` e adicione/ajuste no array de configuração da classe `CustomPostTypes`.
-- Use os helpers para criar queries: `criar_query_otimizada('meu_cpt', 8, [...])`.
-
-### 2. **Criar/Editar Cards e Componentes**
-
-- Crie novos arquivos em `template-parts/content/` seguindo o padrão dos cards existentes.
-- Sempre use os helpers para imagens e campos ACF.
-- Sanitizar todos os dados exibidos.
-
-### 3. **Adicionar Novos Campos ACF**
-
-- Registre campos normalmente pelo painel ACF.
-- Use os helpers: `obter_campo_acf('meu_campo', $post_id)`.
-
-### 4. **Internacionalização**
-
-- Para qualquer texto fixo, use `__('Texto', 'textdomain')` ou `_e('Texto', 'textdomain')`.
-- Adicione arquivos `.po/.mo` para novos idiomas.
-
-### 5. **SEO**
-
-- O SEO dinâmico está em `inc/seo.php` e pode ser customizado facilmente.
-- Use campos ACF para títulos, descrições e imagens SEO.
-
-### 6. **Sistema de Títulos Dinâmicos**
-
-O tema possui um sistema avançado de títulos dinâmicos para o header interno, com **4 níveis de prioridade**:
-
-1. **Variável Global** (maior prioridade) - Definida programaticamente
-2. **Campo ACF 'titulo_pagina'** - Configurado via ACF
-3. **Campo ACF 'titulo_header'** - Configurado via ACF
-4. **Título automático** (fallback) - Título da página/post
-
-#### Métodos de Definição:
-
-**Programaticamente:**
+### 1. **Variável Global** (maior prioridade)
 
 ```php
-// No início de qualquer template
-ThemeHelpers::definir_titulo_pagina('Seu Título Personalizado');
+ThemeHelpers::definir_titulo_pagina('Título Personalizado');
+```
 
-// Exemplos práticos:
+### 2. **Campo ACF 'titulo_pagina'**
+
+Configurado via ACF no painel WordPress
+
+### 3. **Campo ACF 'titulo_header'**
+
+Configurado via ACF no painel WordPress
+
+### 4. **Título automático** (fallback)
+
+Título da página/post automaticamente
+
+### Exemplos de Uso:
+
+```php
+// Programaticamente
 if (is_page('sobre')) {
     ThemeHelpers::definir_titulo_pagina('Nossa História e Valores');
 }
@@ -127,61 +201,139 @@ if (is_post_type_archive('blogs')) {
 }
 ```
 
-**Via ACF:**
+---
 
-- Configure campos `titulo_pagina` ou `titulo_header` no ACF
-- Tipo: Text
-- Localização: Post Type = Page
+## 🛠️ Como Manter e Evoluir
 
-#### Fallbacks Automáticos:
+### 1. **Adicionar/Alterar Custom Post Types**
 
-- **Páginas 404:** "Página não encontrada"
-- **Páginas de busca:** "Resultados da busca"
-- **Archives:** Título limpo (sem prefixos WordPress)
-- **Singles:** Título do post
-- **Páginas:** Título da página
+Edite `inc/custom-post-types.php` e adicione no array `$post_types`:
 
-#### Limpeza Automática:
+```php
+'meu_cpt' => [
+    'singular' => 'Meu Item',
+    'plural'   => 'Meus Itens',
+    'slug'     => 'meus-itens',
+    'icon'     => 'dashicons-admin-generic',
+    'description' => 'Descrição do CPT.',
+],
+```
 
-O sistema remove automaticamente prefixos WordPress como "Arquivos:", "Categoria:", "Tag:", etc.
+### 2. **Criar/Editar Cards e Componentes**
 
-### 7. **Assets (CSS/JS)**
+Crie novos arquivos em `template-parts/content/` seguindo o padrão:
 
-- Adicione novos arquivos em `assets/css` ou `assets/js`.
-- Registre no array de configuração em `inc/assets.php` ou `inc/config.php`.
+```php
+<?php
+// Sempre use helpers para dados
+$imagem = ThemeHelpers::obter_imagem_post($post->ID);
+$titulo = ThemeHelpers::sanitizar_dados(get_the_title());
+?>
+```
 
-### 8. **Paginação**
+### 3. **Adicionar Novos Campos ACF**
 
-- Use sempre `paginate_links` para navegação entre páginas.
+Use sempre os helpers:
 
-### 9. **Fallbacks de Imagem**
+```php
+$valor = ThemeHelpers::obter_campo_acf('meu_campo', $post_id);
+```
 
-- Sempre forneça um fallback ao usar `obter_imagem_post`.
+### 4. **Configurar Assets (CSS/JS)**
+
+Adicione no array `$assets_config` em `inc/config.php`:
+
+```php
+'styles' => [
+    'meu-css' => [
+        'src' => '/assets/css/meu-arquivo.css',
+        'deps' => [],
+    ],
+],
+'scripts' => [
+    'meu-js' => [
+        'file' => 'meu-arquivo.js',
+        'deps' => [],
+    ],
+],
+```
+
+### 5. **Configurar Redes Sociais**
+
+Edite o array `$social_networks_config` em `inc/config.php`:
+
+```php
+['field' => 'config_minha_rede', 'icon' => 'icon-minha-rede.svg', 'label' => 'Minha Rede'],
+```
+
+### 6. **Criar Queries Otimizadas**
+
+Use os helpers de query:
+
+```php
+$query = ThemeQueries::criar_query_otimizada('meu_cpt', 8, [
+    'meta_query' => [
+        [
+            'key' => 'destaque',
+            'value' => '1',
+            'compare' => '='
+        ]
+    ]
+]);
+```
+
+### 7. **SEO Dinâmico**
+
+Configure campos ACF para SEO:
+
+- `titulo_seo` - Título da página
+- `descricao_seo` - Meta description
+- `imagem_seo` - Imagem para redes sociais
 
 ---
 
 ## 💡 Dicas de Manutenção
 
-- **Nunca edite funções helpers diretamente sem revisar dependências.**
-- **Evite duplicação de código:** sempre procure por helpers ou funções já existentes antes de criar novas.
-- **Mantenha os arquivos de template pequenos:** se um arquivo crescer demais, quebre em partes menores em `template-parts/`.
-- **Sempre sanitize dados antes de exibir.**
-- **Prefira soluções simples e diretas.**
-- **Comente trechos complexos para facilitar manutenção futura.**
-- **Antes de atualizar dependências, teste em ambiente de homologação.**
-- **Para títulos dinâmicos:** use sempre `ThemeHelpers::definir_titulo_pagina()` no início dos templates.
+### ✅ **Boas Práticas**
+
+- **Sempre use helpers**: Evite duplicação de código
+- **Sanitize dados**: Use `ThemeHelpers::sanitizar_dados()`
+- **Configure centralmente**: Use `ThemeConfig` para configurações
+- **Mantenha arquivos pequenos**: Quebre em partes se necessário
+- **Use fallbacks**: Sempre forneça alternativas para dados
+
+### ❌ **Evite**
+
+- **Editar helpers sem revisar dependências**
+- **Duplicar código existente**
+- **Usar funções depreciadas do WordPress**
+- **Hardcode de valores**
+- **Arquivos com mais de 500-800 linhas**
+
+### 🔧 **Debug e Desenvolvimento**
+
+```php
+// Verificar configurações
+ThemeConfig::get('theme_config.name');
+
+// Debug mode
+ThemeConfig::is_debug();
+
+// Obter versão
+ThemeConfig::get_version();
+```
 
 ---
 
 ## 📈 Próximos Passos Sugeridos
 
-1. **Implementar testes automatizados para helpers e classes.**
-2. **Adicionar cache para queries frequentes.**
-3. **Documentar helpers e classes no próprio código.**
-4. **Criar um guia de estilos para componentes visuais.**
-5. **Adicionar hooks e filtros customizados para extensibilidade.**
-6. **Expandir o sistema de títulos dinâmicos para outros headers.**
-7. **Implementar cache para títulos dinâmicos em páginas com muito tráfego.**
+1. **Implementar cache para queries frequentes**
+2. **Adicionar testes automatizados para helpers**
+3. **Criar documentação inline para classes**
+4. **Implementar sistema de cache para títulos dinâmicos**
+5. **Adicionar hooks e filtros customizados**
+6. **Expandir sistema de SEO para mais meta tags**
+7. **Criar guia de estilos para componentes**
 
 ---
 

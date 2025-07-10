@@ -201,7 +201,7 @@ class ThemeHelpers
     }
 
     // Renderiza o componente
-    get_template_part('template-parts/pagination', 'simple', [
+    get_template_part('template-parts/pagination/pagination-simple', null, [
       'query' => $query,
       'args'  => $args
     ]);

@@ -107,6 +107,6 @@ if ($query_template->have_posts()) {
 }
 
 // Usa template part diretamente
-get_template_part('template-parts/pagination', 'simple', [
+get_template_part('template-parts/pagination/pagination-simple', null, [
     'query' => $query_template
 ]);

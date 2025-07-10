@@ -45,25 +45,17 @@ class ThemeConfig
                 'file' => 'fslightbox.js',
                 'deps' => [],
             ],
-            'gsap-script' => [
-                'file' => 'gsap.min.js',
-                'deps' => [],
-            ],
-            'scroll-trigger-script' => [
-                'file' => 'ScrollTrigger.min.js',
-                'deps' => ['gsap-script'],
-            ],
             'svg-inject-script' => [
                 'file' => 'svg-inject.min.js',
                 'deps' => [],
             ],
-            'animations' => [
-                'file' => 'animations.js',
-                'deps' => ['gsap-script', 'scroll-trigger-script'],
+            'scrollreveal-script' => [
+                'file' => 'scrollreveal.min.js',
+                'deps' => [],
             ],
             'custom-script' => [
                 'file' => 'scripts.js',
-                'deps' => ['swiper-script', 'fslightbox-script', 'gsap-script', 'scroll-trigger-script', 'svg-inject-script', 'animations'],
+                'deps' => ['swiper-script', 'fslightbox-script', 'svg-inject-script', 'scrollreveal-script'],
             ],
         ],
     ];
