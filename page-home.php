@@ -4,6 +4,9 @@
  * Template Name: Página Inicial
  */
 
+
+echo '<div class="bg-black">'; // abre bg-black
+
 get_header();
 
 // ===================================================================
@@ -149,8 +152,7 @@ $servicos_query = criar_query('servicos', 6, [
     </div>
   </div>
 </section>
-
-</div>
+</div><!-- fecha bg-black -->
 
 <section class="py-14">
   <div class="container">
