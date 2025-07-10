@@ -1,128 +1,311 @@
 <?php
 
 /**
- * Função para adicionar meta tags SEO dinâmicas no head do site
- * Baseado em campos ACF e informações padrão do WordPress.
+ * Template Part para funcionalidades SEO do tema.
  */
 
 // ===================================================================
-// [META TAGS SEO DINÂMICAS]
-// Gera as meta tags SEO para Open Graph e Twitter Card, usando
-// campos personalizados (ACF) para títulos, descrições e imagens.
+// [CLASSE PARA GERENCIAMENTO SEO]
+// Centraliza todas as funcionalidades SEO do tema
 // ===================================================================
-function meu_tema_meta_tags_seo()
+
+class ThemeSEO
 {
-  global $post;
 
-  // ===================================================================
-  // [VALORES PADRÃO - ACF OPTIONS PAGE]
-  // Obtém título, descrição e imagem padrão para SEO da página de opções ACF,
-  // tratando os diferentes formatos possíveis para o campo de imagem.
-  // ===================================================================
-  $default_image = get_field('seo_padrao_imagem', 'option');
-  $default_image_url = '';
+  /**
+   * Configurações padrão de SEO
+   */
+  private static $default_seo = [
+    'title' => '',
+    'description' => '',
+    'image' => '',
+    'url' => '',
+    'site_name' => '',
+  ];
 
-  if ($default_image) {
-    if (is_array($default_image) && !empty($default_image['url'])) {
-      $default_image_url = $default_image['url'];
-    } elseif (is_numeric($default_image)) {
-      $default_image_url = wp_get_attachment_image_url($default_image, 'full');
-    } elseif (is_string($default_image)) {
-      $default_image_url = $default_image;
-    }
+  /**
+   * Gera meta tags SEO para a página atual
+   */
+  public static function gerar_meta_tags()
+  {
+    $seo_data = self::obter_dados_seo();
+    self::exibir_meta_tags($seo_data);
   }
 
-  $default_title = get_field('seo_padrao_titulo', 'option') ?: get_bloginfo('name');
-  $default_description = get_field('seo_padrao_descricao', 'option') ?: get_bloginfo('description');
+  /**
+   * Obtém dados SEO para a página atual
+   *
+   * @return array Dados SEO
+   */
+  private static function obter_dados_seo()
+  {
+    $seo_data = self::$default_seo;
 
-  // Inicializa as variáveis de SEO com valores padrão
-  $title = $default_title;
-  $description = $default_description;
-  $image = $default_image_url;
-  $url = home_url();
-  $site_name = get_bloginfo('name');
+    // Obtém dados padrão das opções do tema
+    $seo_data = self::obter_dados_padrao($seo_data);
 
-  // ===================================================================
-  // [CONDIÇÕES PARA PÁGINAS ESPECÍFICAS]
-  // Define os valores de SEO conforme o tipo da página sendo exibida:
-  // - Página singular (post, página, CPT)
-  // - Página inicial
-  // - Arquivos (categoria, tag, taxonomia)
-  // - Autor
-  // - Página de busca
-  // - Página 404
-  // ===================================================================
-  if (is_singular()) {
-    // Busca campos SEO específicos do post
-    $seo_title = get_field('seo_titulo', $post->ID);
-    $seo_description = get_field('seo_descricao', $post->ID);
-    $seo_image = get_field('seo_imagem', $post->ID);
+    // Aplica dados específicos da página
+    $seo_data = self::aplicar_dados_especificos($seo_data);
 
-    $title = $seo_title ?: get_the_title($post) ?: $default_title;
-    $description = $seo_description ?: get_the_excerpt($post) ?: wp_trim_words(strip_tags($post->post_content), 25, '...') ?: $default_description;
-    $url = get_permalink($post);
+    return $seo_data;
+  }
 
-    // Tratamento da imagem SEO do post
+  /**
+   * Obtém dados padrão das opções do tema
+   *
+   * @param array $seo_data Dados SEO atuais
+   * @return array Dados SEO atualizados
+   */
+  private static function obter_dados_padrao($seo_data)
+  {
+    $default_image = self::obter_campo_acf('seo_padrao_imagem', 'option');
+    $default_image_url = self::processar_imagem_acf($default_image);
+
+    $seo_data['title'] = self::obter_campo_acf('seo_padrao_titulo', 'option') ?: get_bloginfo('name');
+    $seo_data['description'] = self::obter_campo_acf('seo_padrao_descricao', 'option') ?: get_bloginfo('description');
+    $seo_data['image'] = $default_image_url;
+    $seo_data['url'] = home_url();
+    $seo_data['site_name'] = get_bloginfo('name');
+
+    return $seo_data;
+  }
+
+  /**
+   * Aplica dados específicos da página atual
+   *
+   * @param array $seo_data Dados SEO atuais
+   * @return array Dados SEO atualizados
+   */
+  private static function aplicar_dados_especificos($seo_data)
+  {
+    if (is_singular()) {
+      return self::aplicar_dados_singular($seo_data);
+    } elseif (is_front_page()) {
+      return self::aplicar_dados_home($seo_data);
+    } elseif (is_category() || is_tag() || is_tax()) {
+      return self::aplicar_dados_taxonomia($seo_data);
+    } elseif (is_author()) {
+      return self::aplicar_dados_autor($seo_data);
+    } elseif (is_search()) {
+      return self::aplicar_dados_busca($seo_data);
+    } elseif (is_404()) {
+      return self::aplicar_dados_404($seo_data);
+    }
+
+    return $seo_data;
+  }
+
+  /**
+   * Aplica dados para páginas singulares
+   *
+   * @param array $seo_data Dados SEO atuais
+   * @return array Dados SEO atualizados
+   */
+  private static function aplicar_dados_singular($seo_data)
+  {
+    global $post;
+
+    $seo_title = self::obter_campo_acf('seo_titulo', $post->ID);
+    $seo_description = self::obter_campo_acf('seo_descricao', $post->ID);
+    $seo_image = self::obter_campo_acf('seo_imagem', $post->ID);
+
+    $seo_data['title'] = $seo_title ?: get_the_title($post) ?: $seo_data['title'];
+    $seo_data['description'] = $seo_description ?: self::gerar_descricao_automatica($post) ?: $seo_data['description'];
+    $seo_data['url'] = get_permalink($post);
+
+    // Processa imagem SEO
     if ($seo_image) {
-      if (is_array($seo_image) && !empty($seo_image['url'])) {
-        $image = $seo_image['url'];
-      } elseif (is_numeric($seo_image)) {
-        $image = wp_get_attachment_image_url($seo_image, 'full');
-      } elseif (is_string($seo_image)) {
-        $image = $seo_image;
-      }
+      $seo_data['image'] = self::processar_imagem_acf($seo_image);
     } else {
-      // Usa imagem destacada do post ou fallback para imagem padrão
       $thumb_url = get_the_post_thumbnail_url($post, 'full');
-      $image = $thumb_url ?: $default_image_url;
+      $seo_data['image'] = $thumb_url ?: $seo_data['image'];
     }
-  } elseif (is_front_page()) {
-    $title = $default_title;
-    $description = $default_description;
-    $url = home_url();
-  } elseif (is_category() || is_tag() || is_tax()) {
+
+    return $seo_data;
+  }
+
+  /**
+   * Aplica dados para página inicial
+   *
+   * @param array $seo_data Dados SEO atuais
+   * @return array Dados SEO atualizados
+   */
+  private static function aplicar_dados_home($seo_data)
+  {
+    // Mantém dados padrão para página inicial
+    return $seo_data;
+  }
+
+  /**
+   * Aplica dados para páginas de taxonomia
+   *
+   * @param array $seo_data Dados SEO atuais
+   * @return array Dados SEO atualizados
+   */
+  private static function aplicar_dados_taxonomia($seo_data)
+  {
     $term = get_queried_object();
-    $title = single_term_title('', false);
-    $description = term_description($term) ?: $default_description;
-    $url = get_term_link($term);
-  } elseif (is_author()) {
+
+    $seo_data['title'] = single_term_title('', false);
+    $seo_data['description'] = term_description($term) ?: $seo_data['description'];
+    $seo_data['url'] = get_term_link($term);
+
+    return $seo_data;
+  }
+
+  /**
+   * Aplica dados para páginas de autor
+   *
+   * @param array $seo_data Dados SEO atuais
+   * @return array Dados SEO atualizados
+   */
+  private static function aplicar_dados_autor($seo_data)
+  {
     $author = get_queried_object();
-    $title = 'Artigos de ' . $author->display_name;
-    $description = get_the_author_meta('description', $author->ID) ?: $default_description;
-    $url = get_author_posts_url($author->ID);
-  } elseif (is_search()) {
-    $title = 'Resultados da busca por: ' . get_search_query();
-    $description = 'Veja os resultados da busca para "' . get_search_query() . '"';
-    $url = get_search_link();
-  } elseif (is_404()) {
-    $title = 'Página não encontrada';
-    $description = 'A página que você tentou acessar não existe.';
-    $url = home_url('/404');
+
+    $seo_data['title'] = 'Artigos de ' . $author->display_name;
+    $seo_data['description'] = get_the_author_meta('description', $author->ID) ?: $seo_data['description'];
+    $seo_data['url'] = get_author_posts_url($author->ID);
+
+    return $seo_data;
   }
 
-  // ===================================================================
-  // [SAÍDA DAS META TAGS NO HEAD]
-  // Exibe as meta tags SEO para descrição, Open Graph e Twitter Card
-  // ===================================================================
-  echo "<meta name=\"description\" content=\"" . esc_attr($description) . "\">\n";
-  echo "<meta property=\"og:title\" content=\"" . esc_attr($title) . "\">\n";
-  echo "<meta property=\"og:description\" content=\"" . esc_attr($description) . "\">\n";
-  echo "<meta property=\"og:url\" content=\"" . esc_url($url) . "\">\n";
-  echo "<meta property=\"og:site_name\" content=\"" . esc_attr($site_name) . "\">\n";
-  echo "<meta property=\"og:type\" content=\"website\">\n";
+  /**
+   * Aplica dados para páginas de busca
+   *
+   * @param array $seo_data Dados SEO atuais
+   * @return array Dados SEO atualizados
+   */
+  private static function aplicar_dados_busca($seo_data)
+  {
+    $search_query = get_search_query();
 
-  if ($image) {
-    echo "<meta property=\"og:image\" content=\"" . esc_url($image) . "\">\n";
+    $seo_data['title'] = 'Resultados da busca por: ' . $search_query;
+    $seo_data['description'] = 'Veja os resultados da busca para "' . $search_query . '"';
+    $seo_data['url'] = get_search_link();
+
+    return $seo_data;
   }
 
-  echo "<meta name=\"twitter:card\" content=\"summary_large_image\">\n";
-  echo "<meta name=\"twitter:title\" content=\"" . esc_attr($title) . "\">\n";
-  echo "<meta name=\"twitter:description\" content=\"" . esc_attr($description) . "\">\n";
+  /**
+   * Aplica dados para página 404
+   *
+   * @param array $seo_data Dados SEO atuais
+   * @return array Dados SEO atualizados
+   */
+  private static function aplicar_dados_404($seo_data)
+  {
+    $seo_data['title'] = 'Página não encontrada';
+    $seo_data['description'] = 'A página que você tentou acessar não existe.';
+    $seo_data['url'] = home_url('/404');
 
-  if ($image) {
-    echo "<meta name=\"twitter:image\" content=\"" . esc_url($image) . "\">\n";
+    return $seo_data;
+  }
+
+  /**
+   * Processa imagem do ACF
+   *
+   * @param mixed $acf_image Dados da imagem do ACF
+   * @return string URL da imagem ou string vazia
+   */
+  private static function processar_imagem_acf($acf_image)
+  {
+    if (!$acf_image) {
+      return '';
+    }
+
+    if (is_array($acf_image) && !empty($acf_image['url'])) {
+      return $acf_image['url'];
+    } elseif (is_numeric($acf_image)) {
+      return wp_get_attachment_image_url($acf_image, 'full');
+    } elseif (is_string($acf_image)) {
+      return $acf_image;
+    }
+
+    return '';
+  }
+
+  /**
+   * Gera descrição automática para posts
+   *
+   * @param WP_Post $post Objeto do post
+   * @return string Descrição gerada
+   */
+  private static function gerar_descricao_automatica($post)
+  {
+    $excerpt = get_the_excerpt($post);
+    if (!empty($excerpt)) {
+      return $excerpt;
+    }
+
+    $content = strip_tags($post->post_content);
+    return wp_trim_words($content, 25, '...');
+  }
+
+  /**
+   * Obtém campo ACF com fallback
+   *
+   * @param string $campo Nome do campo
+   * @param mixed  $post_id ID do post ou 'option'
+   * @return mixed Valor do campo
+   */
+  private static function obter_campo_acf($campo, $post_id = null)
+  {
+    if (!function_exists('get_field')) {
+      return '';
+    }
+
+    return get_field($campo, $post_id);
+  }
+
+  /**
+   * Exibe as meta tags SEO
+   *
+   * @param array $seo_data Dados SEO
+   */
+  private static function exibir_meta_tags($seo_data)
+  {
+    // Meta description
+    echo "<meta name=\"description\" content=\"" . esc_attr($seo_data['description']) . "\">\n";
+
+    // Open Graph
+    echo "<meta property=\"og:title\" content=\"" . esc_attr($seo_data['title']) . "\">\n";
+    echo "<meta property=\"og:description\" content=\"" . esc_attr($seo_data['description']) . "\">\n";
+    echo "<meta property=\"og:url\" content=\"" . esc_url($seo_data['url']) . "\">\n";
+    echo "<meta property=\"og:site_name\" content=\"" . esc_attr($seo_data['site_name']) . "\">\n";
+    echo "<meta property=\"og:type\" content=\"website\">\n";
+
+    if ($seo_data['image']) {
+      echo "<meta property=\"og:image\" content=\"" . esc_url($seo_data['image']) . "\">\n";
+    }
+
+    // Twitter Card
+    echo "<meta name=\"twitter:card\" content=\"summary_large_image\">\n";
+    echo "<meta name=\"twitter:title\" content=\"" . esc_attr($seo_data['title']) . "\">\n";
+    echo "<meta name=\"twitter:description\" content=\"" . esc_attr($seo_data['description']) . "\">\n";
+
+    if ($seo_data['image']) {
+      echo "<meta name=\"twitter:image\" content=\"" . esc_url($seo_data['image']) . "\">\n";
+    }
   }
 }
 
-// Registra a função no hook wp_head para inserir as meta tags no head do tema
-add_action('wp_head', 'meu_tema_meta_tags_seo');
+// ===================================================================
+// [REGISTRO DO HOOK]
+// Registra a função no wp_head
+// ===================================================================
+
+add_action('wp_head', [ThemeSEO::class, 'gerar_meta_tags']);
+
+// ===================================================================
+// [FUNÇÕES DE CONVENIÊNCIA]
+// Funções globais para facilitar o uso do SEO
+// ===================================================================
+
+/**
+ * Gera meta tags SEO manualmente
+ */
+function gerar_meta_tags_seo()
+{
+  ThemeSEO::gerar_meta_tags();
+}

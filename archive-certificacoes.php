@@ -12,11 +12,7 @@ get_header();
 // ===================================================================
 
 $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-query_posts([
-    'post_type'      => 'certificacoes',
-    'posts_per_page' => 8,
-    'paged'          => $paged
-]);
+$cert_query = criar_query_otimizada('certificacoes', 8, ['paged' => $paged]);
 
 // Verifica se o card de certificação existe para evitar erro em tempo de execução
 $card_template_path   = 'template-parts/content/card-certificacoes.php';
@@ -30,8 +26,8 @@ $card_template_exists = locate_template($card_template_path);
 
 <div class="lg:my-20 container my-10">
     <div class="gap-9 flex flex-col w-full max-w-[1000px]">
-        <?php if (have_posts()) : ?>
-            <?php while (have_posts()) : the_post(); ?>
+        <?php if ($cert_query->have_posts()) : ?>
+            <?php while ($cert_query->have_posts()) : $cert_query->the_post(); ?>
 
                 <?php if ($card_template_exists) : ?>
                     <?php get_template_part('template-parts/content/card', 'certificacoes'); ?>
@@ -46,7 +42,9 @@ $card_template_exists = locate_template($card_template_path);
                     'prev_text' => '&laquo; Anterior',
                     'next_text' => 'Próximo &raquo;',
                     'type'      => 'array',
-                    'class'     => 'pagination'
+                    'class'     => 'pagination',
+                    'total'     => $cert_query->max_num_pages,
+                    'current'   => $paged
                 ]);
 
                 if ($pagination) : ?>
@@ -67,5 +65,5 @@ $card_template_exists = locate_template($card_template_path);
     </div>
 </div>
 
-<?php wp_reset_query(); ?>
+<?php wp_reset_postdata(); ?>
 <?php get_footer(); ?>

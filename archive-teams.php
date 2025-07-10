@@ -11,13 +11,8 @@ get_header();
 // Carregamento inicial e verificações de templates
 // ===================================================================
 
-
 $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-query_posts([
-    'post_type'      => 'teams',
-    'posts_per_page' => 8,
-    'paged'          => $paged
-]);
+$teams_query = criar_query_otimizada('teams', 8, ['paged' => $paged]);
 
 // Verifica se o card de team existe para evitar erro em tempo de execução
 $card_template_path   = 'template-parts/content/card-team.php';
@@ -32,8 +27,8 @@ $card_template_exists = locate_template($card_template_path);
 <div class="lg:my-20 container my-10">
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <?php if (have_posts()) : ?>
-            <?php while (have_posts()) : the_post(); ?>
+        <?php if ($teams_query->have_posts()) : ?>
+            <?php while ($teams_query->have_posts()) : $teams_query->the_post(); ?>
                 <?php if ($card_template_exists) : ?>
                     <?php get_template_part('template-parts/content/card-team'); ?>
                 <?php else : ?>
@@ -89,5 +84,5 @@ $card_template_exists = locate_template($card_template_path);
     </div>
 </div>
 
-<?php wp_reset_query(); ?>
+<?php wp_reset_postdata(); ?>
 <?php get_footer(); ?>

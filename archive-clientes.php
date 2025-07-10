@@ -19,20 +19,15 @@ get_header();
 // Carregamento inicial e verificações de templates
 // ===================================================================
 
-$paged = get_query_var('paged') ? get_query_var('paged') : 1;
+$paged = get_query_var('paged') ?: 1;
 
 // Verifica se o post type 'clientes' está registrado
 if (!post_type_exists('clientes')) {
-    wp_die('Post type "clientes" não está registrado.');
+    wp_die(__('Post type "clientes" não está registrado.', 'textdomain'));
 }
 
 // Cria uma nova query em vez de usar query_posts para evitar conflitos
-$clientes_query = new WP_Query([
-    'post_type'      => 'clientes',
-    'posts_per_page' => 8,
-    'paged'          => $paged,
-    'post_status'    => 'publish'
-]);
+$clientes_query = criar_query_otimizada('clientes', 8, ['paged' => $paged]);
 
 // Verifica se o card de clientes existe para evitar erro em tempo de execução
 $card_template_path   = 'template-parts/content/card-clientes.php';
@@ -61,18 +56,18 @@ $card_template_exists = locate_template($card_template_path);
         <?php else : ?>
             <!-- Mensagem quando não há posts -->
             <div class="col-span-full text-center py-10">
-                <p class="text-gray-600">Nenhum cliente encontrado.</p>
+                <p class="text-gray-600"><?php _e('Nenhum cliente encontrado.', 'textdomain'); ?></p>
             </div>
         <?php endif; ?>
     </div>
 
     <!-- Paginação -->
-    <?php if ($clientes_query->have_posts()) : ?>
+    <?php if ($clientes_query->max_num_pages > 1) : ?>
         <div class="md:justify-start flex justify-center w-full mt-10">
             <?php
             echo paginate_links([
-                'prev_text' => '&laquo; Anterior',
-                'next_text' => 'Próximo &raquo;',
+                'prev_text' => __('&laquo; Anterior', 'textdomain'),
+                'next_text' => __('Próximo &raquo;', 'textdomain'),
                 'type'      => 'list',
                 'total'     => $clientes_query->max_num_pages,
                 'current'   => $paged
