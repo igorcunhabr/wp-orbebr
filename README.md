@@ -1,145 +1,151 @@
 # WP OrbeBR - Tema WordPress
 
-Tema WordPress personalizado para a OrbeBR, desenvolvido com foco em performance, acessibilidade e manutenibilidade.
+Tema WordPress personalizado para a OrbeBR, desenvolvido com foco em performance, escalabilidade, acessibilidade e manutenibilidade.
 
-## 🚀 Funcionalidades Implementadas
+---
 
-### 📝 Sistema de Blog
+## 🚀 Visão Geral
 
-- **Post Type Personalizado**: `blogs` com suporte completo ao WordPress
-- **Página de Arquivo**: `archive-blogs.php` com listagem responsiva
-- **Cards Personalizados**: Template `card-blog.php` com design moderno
-- **Paginação**: Sistema de paginação com 8 posts por página
-- **Busca em Tempo Real**: Funcionalidade JavaScript para filtrar posts instantaneamente
+Este tema foi totalmente refatorado para adotar uma arquitetura moderna, orientada a objetos e baseada em helpers reutilizáveis. O código está padronizado, seguro, pronto para internacionalização e fácil de manter e evoluir.
 
-### 🎨 Design System
+---
 
-- **Tailwind CSS**: Framework CSS utilitário para desenvolvimento rápido
-- **Fontes Customizadas**: Filson Pro (Light, Regular, Book, Medium)
-- **Cores Personalizadas**: Paleta de cores definida no tema
-- **Componentes Reutilizáveis**: Cards, botões, formulários padronizados
-
-### 📱 Responsividade
-
-- **Mobile First**: Design otimizado para dispositivos móveis
-- **Grid Responsivo**: Layout adaptativo para diferentes tamanhos de tela
-- **Menu Mobile**: Navegação otimizada para touch
-
-### ⚡ Performance
-
-- **Lazy Loading**: Carregamento otimizado de imagens
-- **Debounce**: Controle de frequência em buscas
-- **Animações CSS**: Transições suaves e performáticas
-
-## 📁 Estrutura do Projeto
+## 🏗️ Estrutura do Projeto
 
 ```
 wp-orbebr/
 ├── assets/
 │   ├── css/
-│   │   ├── tailwind-custom.css    # Estilos customizados
-│   │   └── swiper.min.css         # CSS do Swiper
 │   ├── js/
-│   │   ├── scripts.js             # Scripts principais
-│   │   └── animations.js          # Animações
-│   ├── fonts/                     # Fontes customizadas
-│   └── img/                       # Imagens e ícones
+│   ├── fonts/
+│   └── img/
 ├── inc/
-│   ├── custom-post-types.php      # Registro de CPTs
-│   ├── queries.php                # Configurações de query
-│   └── assets.php                 # Carregamento de assets
+│   ├── acf-options.php
+│   ├── assets.php
+│   ├── cleanup.php
+│   ├── config.php         # Configuração centralizada do tema
+│   ├── custom-post-types.php
+│   ├── editor.php
+│   ├── helpers.php        # Helpers e utilitários globais
+│   ├── menus.php
+│   ├── queries.php        # Helpers para queries WP
+│   ├── seo.php            # SEO dinâmico
+│   ├── uploads.php
 ├── template-parts/
-│   └── content/
-│       └── card-blog.php          # Template do card de blog
-├── archive-blogs.php              # Página de arquivo do blog
-└── functions.php                  # Arquivo principal do tema
+│   ├── content/
+│   │   ├── card-blog.php
+│   │   ├── card-cases.php
+│   │   ├── card-certificacoes.php
+│   │   ├── card-clientes.php
+│   │   └── card-team.php
+│   ├── footer/
+│   ├── header/
+│   └── header-internal/
+├── 404.php
+├── archive-blogs.php
+├── archive-cases.php
+├── archive-certificacoes.php
+├── archive-clientes.php
+├── archive-teams.php
+├── footer.php
+├── functions.php
+├── header.php
+├── page-home.php
+├── single-blogs.php
+├── single-cases.php
+├── style.css
+└── ...
 ```
 
-## 🛠️ Como Usar
+---
 
-### 1. Criar Posts do Blog
+## 🧩 Arquitetura e Boas Práticas
 
-1. Acesse o painel administrativo do WordPress
-2. Vá para "Blogs" no menu lateral
-3. Clique em "Adicionar Novo"
-4. Preencha o título e conteúdo
-5. Adicione uma imagem em destaque (opcional)
-6. Publique o post
+- **Helpers e Classes**: Toda a lógica de negócio e utilitários está centralizada em helpers (`inc/helpers.php`, `inc/queries.php`, etc.) e classes (`ThemeHelpers`, `ThemeQueries`, `ThemeSEO`, `ThemeConfig`, etc.), facilitando reuso e manutenção.
+- **Configuração Centralizada**: O arquivo `inc/config.php` concentra todas as configurações do tema (assets, menus, SEO, etc.), tornando fácil alterar comportamentos globais.
+- **Internacionalização**: Todos os textos fixos usam funções de tradução (`__()`, `_e()`, etc.), prontos para multi-idioma.
+- **Sanitização e Segurança**: Todos os dados vindos do banco, ACF ou usuário são sanitizados com `esc_html`, `esc_url`, `esc_attr`, `wp_kses_post`.
+- **Fallbacks Inteligentes**: Imagens e campos sempre têm fallback para evitar quebras visuais.
+- **Paginação Padronizada**: Uso de `paginate_links` para melhor acessibilidade e SEO.
+- **Evita Funções Depreciadas**: Não utiliza `query_posts` ou práticas antigas do WP.
+- **Componentização**: Todos os cards e partes do layout estão em `template-parts/` para fácil reuso.
 
-### 2. Personalizar o Design
+---
 
-- Edite `assets/css/tailwind-custom.css` para modificar estilos
-- Ajuste cores e fontes nas variáveis CSS
-- Modifique componentes no arquivo de estilos
+## 🛠️ Como Manter e Evoluir
 
-### 3. Adicionar Funcionalidades
+### 1. **Adicionar/Alterar Custom Post Types**
 
-- Novos scripts em `assets/js/scripts.js`
-- Novos post types em `inc/custom-post-types.php`
-- Novos templates em `template-parts/`
+- Edite `inc/custom-post-types.php` e adicione/ajuste no array de configuração da classe `CustomPostTypes`.
+- Use os helpers para criar queries: `criar_query_otimizada('meu_cpt', 8, [...])`.
 
-## 🎯 Funcionalidades do Blog
+### 2. **Criar/Editar Cards e Componentes**
 
-### Busca em Tempo Real
+- Crie novos arquivos em `template-parts/content/` seguindo o padrão dos cards existentes.
+- Sempre use os helpers para imagens e campos ACF.
+- Sanitizar todos os dados exibidos.
 
-- Campo de busca funcional na página de arquivo
-- Filtragem instantânea por título e conteúdo
-- Debounce de 300ms para otimizar performance
-- Mensagem de "nenhum resultado" quando necessário
+### 3. **Adicionar Novos Campos ACF**
 
-### Paginação
+- Registre campos normalmente pelo painel ACF.
+- Use os helpers: `obter_campo_acf('meu_campo', $post_id)`.
 
-- 8 posts por página
-- Navegação intuitiva
-- Estilos personalizados para botões
+### 4. **Internacionalização**
 
-### Cards Responsivos
+- Para qualquer texto fixo, use `__('Texto', 'textdomain')` ou `_e('Texto', 'textdomain')`.
+- Adicione arquivos `.po/.mo` para novos idiomas.
 
-- Layout em grid adaptativo
-- Hover effects suaves
-- Suporte a imagens em destaque
-- Fallback para posts sem imagem
+### 5. **SEO**
 
-## 🔧 Configurações
+- O SEO dinâmico está em `inc/seo.php` e pode ser customizado facilmente.
+- Use campos ACF para títulos, descrições e imagens SEO.
 
-### Post Type "Blogs"
+### 6. **Assets (CSS/JS)**
 
-```php
-// Configurações do post type
-'public'       => true,
-'has_archive'  => true,
-'rewrite'      => ['slug' => 'blogs'],
-'supports'     => ['title', 'editor', 'thumbnail'],
-'posts_per_page' => 8
-```
+- Adicione novos arquivos em `assets/css` ou `assets/js`.
+- Registre no array de configuração em `inc/assets.php` ou `inc/config.php`.
 
-### Estilos da Paginação
+### 7. **Paginação**
 
-```css
-.pagination {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-```
+- Use sempre `paginate_links` para navegação entre páginas.
 
-## 📈 Próximos Passos
+### 8. **Fallbacks de Imagem**
 
-1. **Implementar SEO Avançado**: Meta tags, schema markup
-2. **Adicionar Categorias**: Sistema de categorização para posts
-3. **Comentários**: Sistema de comentários personalizado
-4. **Cache**: Implementar cache para melhor performance
-5. **Analytics**: Integração com Google Analytics
+- Sempre forneça um fallback ao usar `obter_imagem_post`.
+
+---
+
+## 💡 Dicas de Manutenção
+
+- **Nunca edite funções helpers diretamente sem revisar dependências.**
+- **Evite duplicação de código:** sempre procure por helpers ou funções já existentes antes de criar novas.
+- **Mantenha os arquivos de template pequenos:** se um arquivo crescer demais, quebre em partes menores em `template-parts/`.
+- **Sempre sanitize dados antes de exibir.**
+- **Prefira soluções simples e diretas.**
+- **Comente trechos complexos para facilitar manutenção futura.**
+- **Antes de atualizar dependências, teste em ambiente de homologação.**
+
+---
+
+## 📈 Próximos Passos Sugeridos
+
+1. **Implementar testes automatizados para helpers e classes.**
+2. **Adicionar cache para queries frequentes.**
+3. **Documentar helpers e classes no próprio código.**
+4. **Criar um guia de estilos para componentes visuais.**
+5. **Adicionar hooks e filtros customizados para extensibilidade.**
+
+---
 
 ## 🤝 Contribuição
 
-Para contribuir com o projeto:
-
 1. Faça um fork do repositório
 2. Crie uma branch para sua feature
-3. Implemente as mudanças
-4. Teste em diferentes dispositivos
+3. Implemente as mudanças seguindo o padrão do tema
+4. Teste em diferentes dispositivos e cenários
 5. Envie um pull request
+
+---
 
 ## 📄 Licença
 
