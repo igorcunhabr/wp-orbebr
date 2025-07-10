@@ -1,6 +1,8 @@
 /* Tailwind CSS 4 Customizations */
 
-/* Custom Fonts - Filson Pro Family */
+/* ==========================================
+   CUSTOM FONTS - FILSON PRO FAMILY
+   ========================================== */
 @font-face {
   font-family: "Filson Pro";
   src: url("../fonts/FilsonProLight.woff2") format("woff2");
@@ -45,7 +47,8 @@
 
 /* Custom Fonts */
 @theme {
-  --font-family-sans: "Filson Pro", system-ui, sans-serif;
+  --font-family-sans: "Filson Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-family-serif: Georgia, serif;
   --font-family-mono: "Monaco", "Consolas", monospace;
 }
@@ -81,9 +84,44 @@
 @layer utilities {
   html {
     font-family: var(--font-family-sans);
-    /* background-color: #000; */
   }
 
+  /* Force font loading for all elements */
+  body,
+  html,
+  * {
+    font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  }
+
+  /* Specific font weights */
+  .font-light {
+    font-weight: 300 !important;
+  }
+  .font-regular {
+    font-weight: 400 !important;
+  }
+  .font-book {
+    font-weight: 500 !important;
+  }
+  .font-medium {
+    font-weight: 600 !important;
+  }
+
+  /* Debug class to test font loading */
+  .font-test {
+    font-family: "Filson Pro", Arial, sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    color: #da373d !important;
+    background: #f0f0f0 !important;
+    padding: 10px !important;
+    margin: 10px 0 !important;
+    border: 2px solid #da373d !important;
+    border-radius: 5px !important;
+  }
+
+  /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 9px;
     height: 9px;
@@ -157,4 +195,77 @@
     color: #6b7280;
     pointer-events: none;
   }
+}
+
+/* ==========================================
+   FORÇA CARREGAMENTO DAS FONTES
+   ========================================== */
+
+/* Force font loading with high specificity */
+html.no-js,
+html.js,
+html {
+  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+body {
+  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Override Tailwind defaults */
+.font-sans {
+  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Ensure font weights are applied */
+.font-light,
+.font-extralight {
+  font-weight: 300 !important;
+  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+.font-normal,
+.font-regular {
+  font-weight: 400 !important;
+  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+.font-medium {
+  font-weight: 500 !important;
+  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+.font-semibold {
+  font-weight: 600 !important;
+  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Override all headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Override all paragraph and text elements */
+p,
+span,
+div,
+a,
+li,
+td,
+th {
+  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }

@@ -23,3 +23,22 @@ require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/seo.php';
 require_once get_template_directory() . '/inc/queries.php';
 require_once get_template_directory() . '/inc/uploads.php';
+
+// ===================================================================
+// [OTIMIZAÇÃO DE FONTES]
+// Adiciona headers otimizados para carregamento de fontes
+// ===================================================================
+function add_font_preload_headers()
+{
+  $font_files = [
+    'FilsonProLight.woff2',
+    'FilsonProRegular.woff2',
+    'FilsonProBook.woff2',
+    'FilsonProMedium.woff2'
+  ];
+
+  foreach ($font_files as $font) {
+    echo '<link rel="preload" href="' . get_template_directory_uri() . '/assets/fonts/' . $font . '" as="font" type="font/woff2" crossorigin="anonymous">' . "\n";
+  }
+}
+add_action('wp_head', 'add_font_preload_headers', 1);
