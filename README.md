@@ -100,16 +100,61 @@ wp-orbebr/
 - O SEO dinâmico está em `inc/seo.php` e pode ser customizado facilmente.
 - Use campos ACF para títulos, descrições e imagens SEO.
 
-### 6. **Assets (CSS/JS)**
+### 6. **Sistema de Títulos Dinâmicos**
+
+O tema possui um sistema avançado de títulos dinâmicos para o header interno, com **4 níveis de prioridade**:
+
+1. **Variável Global** (maior prioridade) - Definida programaticamente
+2. **Campo ACF 'titulo_pagina'** - Configurado via ACF
+3. **Campo ACF 'titulo_header'** - Configurado via ACF
+4. **Título automático** (fallback) - Título da página/post
+
+#### Métodos de Definição:
+
+**Programaticamente:**
+
+```php
+// No início de qualquer template
+ThemeHelpers::definir_titulo_pagina('Seu Título Personalizado');
+
+// Exemplos práticos:
+if (is_page('sobre')) {
+    ThemeHelpers::definir_titulo_pagina('Nossa História e Valores');
+}
+
+if (is_post_type_archive('blogs')) {
+    ThemeHelpers::definir_titulo_pagina('Blog e Artigos');
+}
+```
+
+**Via ACF:**
+
+- Configure campos `titulo_pagina` ou `titulo_header` no ACF
+- Tipo: Text
+- Localização: Post Type = Page
+
+#### Fallbacks Automáticos:
+
+- **Páginas 404:** "Página não encontrada"
+- **Páginas de busca:** "Resultados da busca"
+- **Archives:** Título limpo (sem prefixos WordPress)
+- **Singles:** Título do post
+- **Páginas:** Título da página
+
+#### Limpeza Automática:
+
+O sistema remove automaticamente prefixos WordPress como "Arquivos:", "Categoria:", "Tag:", etc.
+
+### 7. **Assets (CSS/JS)**
 
 - Adicione novos arquivos em `assets/css` ou `assets/js`.
 - Registre no array de configuração em `inc/assets.php` ou `inc/config.php`.
 
-### 7. **Paginação**
+### 8. **Paginação**
 
 - Use sempre `paginate_links` para navegação entre páginas.
 
-### 8. **Fallbacks de Imagem**
+### 9. **Fallbacks de Imagem**
 
 - Sempre forneça um fallback ao usar `obter_imagem_post`.
 
@@ -124,6 +169,7 @@ wp-orbebr/
 - **Prefira soluções simples e diretas.**
 - **Comente trechos complexos para facilitar manutenção futura.**
 - **Antes de atualizar dependências, teste em ambiente de homologação.**
+- **Para títulos dinâmicos:** use sempre `ThemeHelpers::definir_titulo_pagina()` no início dos templates.
 
 ---
 
@@ -134,6 +180,8 @@ wp-orbebr/
 3. **Documentar helpers e classes no próprio código.**
 4. **Criar um guia de estilos para componentes visuais.**
 5. **Adicionar hooks e filtros customizados para extensibilidade.**
+6. **Expandir o sistema de títulos dinâmicos para outros headers.**
+7. **Implementar cache para títulos dinâmicos em páginas com muito tráfego.**
 
 ---
 
