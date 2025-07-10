@@ -288,6 +288,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // ===================================================================
+  // [SWIPER]
+  // Inicialização do Swiper para o banner
+  // ===================================================================
+
+  // SWIPER
+  var bannerSwiper = new Swiper(".bannerSwiper");
+
+  // ===================================================================
   // [UTILITÁRIOS]
   // Funções utilitárias
   // ===================================================================
