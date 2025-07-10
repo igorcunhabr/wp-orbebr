@@ -54,42 +54,38 @@ $template_uri = get_template_directory_uri();
 
     <div class="lg:my-20 container my-10">
       <div class="max-w-[900px] mx-auto">
-        @if (!empty($blog->images))
+        <!-- if -->
         <div class="md:grid-col-3 lg:grid-cols-4 gallery grid grid-cols-2 gap-5">
-          @foreach ($blog->images as $image)
+          <!-- abre -->
           <div id="images-item" class="relative rounded-[10px] h-[180px] overflow-hidden">
-            <a href="{{ asset('storage/' . $image) }}" class="glightbox">
-              <img src="{{ asset('storage/' . $image) }}" alt="{{ $blog->title }}"
+            <a href="imagem" class="glightbox">
+              <img src="imagem" alt="titulo"
                 class="object-cover w-full h-full">
               <div
                 class="hover:opacity-40 z-1 absolute top-0 left-0 w-full h-full transition-opacity duration-300 bg-indigo-600 opacity-0">
               </div>
             </a>
           </div>
-          @endforeach
+          <!-- fecha -->
         </div>
-        @else
+        <!-- else -->
         <div id="images-item" class="rounded-[10px] h-[300px] lg:h-[480px] overflow-hidden">
-          <a href="{{ asset('storage/' . $blog->cover) }}" class="glightbox">
-            <img src="{{ asset('storage/' . $blog->cover) }}" alt="{{ $blog->title }}"
+          <a href="imagem" class="glightbox">
+            <img src="imagem" alt="titulo"
               class="object-cover w-full h-full">
           </a>
         </div>
-        @endif
+        <!-- fecha if -->
         <div id="text" class="mt-5">
           <p>
-            {!! $blog->content !!}
+            conteudo
           </p>
         </div>
       </div>
     </div>
 
 
-    @if ($setting->team_cover != '')
-    <section id="team">
-      <img src="{{ asset('storage/' . $setting->team_cover) }}" alt="Team">
-    </section>
-    @endif
+    bloco team!
 
 <?php endwhile;
 endif; ?>
