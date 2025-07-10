@@ -120,13 +120,13 @@ foreach ($social_networks_config as $network) {
 
     <!-- Botão Menu Mobile -->
     <button id="js-open-menu"
-      class="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 z-50"
+      class="lg:hidden z-50"
       aria-label="Abrir menu"
       aria-expanded="false"
       aria-controls="mobile-menu">
-      <span class="w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"></span>
-      <span class="w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"></span>
-      <span class="w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </button>
   </div>
 

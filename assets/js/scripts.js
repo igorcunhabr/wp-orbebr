@@ -24,12 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         menuButton.setAttribute("aria-expanded", "false");
         document.body.classList.remove("menu-open");
 
-        // Resetar ícone do menu
-        if (menuSpans) {
-          menuSpans.forEach((span) => {
-            span.classList.remove("rotate-45", "-rotate-45", "opacity-0");
-          });
-        }
+        // Resetar ícone do menu - controlado pelo CSS via aria-expanded
       } else {
         // Abrir menu
         mobileMenu.classList.remove("-translate-x-full");
@@ -38,12 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
         menuButton.setAttribute("aria-expanded", "true");
         document.body.classList.add("menu-open");
 
-        // Animar ícone do menu
-        if (menuSpans && menuSpans.length >= 3) {
-          menuSpans[0].classList.add("rotate-45");
-          menuSpans[1].classList.add("opacity-0");
-          menuSpans[2].classList.add("-rotate-45");
-        }
+        // Animar ícone do menu - agora controlado pelo CSS
+        // O CSS já aplica as transformações necessárias via aria-expanded
       }
     });
 
@@ -59,12 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
           menuButton.setAttribute("aria-expanded", "false");
           document.body.classList.remove("menu-open");
 
-          // Resetar ícone do menu
-          if (menuSpans) {
-            menuSpans.forEach((span) => {
-              span.classList.remove("rotate-45", "-rotate-45", "opacity-0");
-            });
-          }
+          // Resetar ícone do menu - controlado pelo CSS via aria-expanded
         }, 100);
       });
     });

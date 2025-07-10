@@ -228,36 +228,39 @@
   }
 
   /* Menu Button Animation */
+  #js-open-menu {
+    position: relative;
+  }
+
   #js-open-menu span {
-    transform-origin: center;
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: white;
+    margin: 3px 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
   }
 
-  #js-open-menu span:nth-child(1) {
-    transform: translateY(0) rotate(0deg);
-  }
-
-  #js-open-menu span:nth-child(2) {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-
-  #js-open-menu span:nth-child(3) {
-    transform: translateY(0) rotate(0deg);
-  }
-
-  /* Menu Button Active State */
+  /* Menu Button Active State - X Formation */
   #js-open-menu[aria-expanded="true"] span:nth-child(1) {
-    transform: translateY(6px) rotate(45deg);
+    transform: translateY(5px) rotate(45deg);
+    background-color: #ffd530;
   }
 
   #js-open-menu[aria-expanded="true"] span:nth-child(2) {
-    transform: translateY(0) scale(0);
     opacity: 0;
+    transform: scale(0);
   }
 
   #js-open-menu[aria-expanded="true"] span:nth-child(3) {
-    transform: translateY(-6px) rotate(-45deg);
+    transform: translateY(-5px) rotate(-45deg);
+    background-color: #ffd530;
+  }
+
+  /* Hover effect for menu button */
+  #js-open-menu:hover span {
+    background-color: #ffd530;
   }
 
   /* Menu Mobile Overlay */
