@@ -33,7 +33,7 @@ $card_data = [
         <x:header />
         <h2
             class="text-center text-white text-[24px] lg:text-[44px] font-medium pb-4 lg:pb-8 w-full absolute left-0 bottom-0">
-            {{ $title }}
+            titulo da pagina
         </h2>
     </div>
 </div>
