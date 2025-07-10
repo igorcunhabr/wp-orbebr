@@ -142,7 +142,10 @@ class CustomPostTypes
     $args = array_merge(self::$default_config, [
       'labels'       => self::get_cpt_labels($config['singular'], $config['plural']),
       'description'  => __($config['description'], 'textdomain'),
-      'rewrite'      => ['slug' => $config['slug']],
+      'rewrite'      => [
+        'slug' => $config['slug'],
+        'with_front' => false
+      ],
       'menu_icon'    => $config['icon'],
     ]);
 
@@ -198,6 +201,19 @@ class CustomPostTypes
 // ===================================================================
 
 add_action('init', [CustomPostTypes::class, 'register_all_cpts']);
+
+// Flush rewrite rules apenas uma vez após ativação do tema
+add_action('after_switch_theme', function () {
+  flush_rewrite_rules();
+});
+
+// Força flush das rewrite rules para resolver problemas de paginação
+add_action('init', function () {
+  if (isset($_GET['flush_rules'])) {
+    flush_rewrite_rules();
+    wp_die('Rewrite rules flushed!');
+  }
+});
 
 // ===================================================================
 // [FUNÇÕES DE CONVENIÊNCIA]

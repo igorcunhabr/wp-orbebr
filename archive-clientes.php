@@ -27,7 +27,7 @@ if (!post_type_exists('clientes')) {
 }
 
 // Cria uma nova query em vez de usar query_posts para evitar conflitos
-$clientes_query = criar_query_otimizada('clientes', 8, ['paged' => $paged]);
+$clientes_query = criar_query_otimizada('clientes', null, ['paged' => $paged]);
 
 // Verifica se o card de clientes existe para evitar erro em tempo de execução
 $card_template_path   = 'template-parts/content/card-clientes.php';
@@ -62,19 +62,10 @@ $card_template_exists = locate_template($card_template_path);
     </div>
 
     <!-- Paginação -->
-    <?php if ($clientes_query->max_num_pages > 1) : ?>
-        <div class="md:justify-start flex justify-center w-full mt-10">
-            <?php
-            echo paginate_links([
-                'prev_text' => __('&laquo; Anterior', 'textdomain'),
-                'next_text' => __('Próximo &raquo;', 'textdomain'),
-                'type'      => 'list',
-                'total'     => $clientes_query->max_num_pages,
-                'current'   => $paged
-            ]);
-            ?>
-        </div>
-    <?php endif; ?>
+    <?php
+    // Renderiza o componente de paginação reutilizável
+    renderizar_paginacao($clientes_query);
+    ?>
 
 </div>
 

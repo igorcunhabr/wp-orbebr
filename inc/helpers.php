@@ -178,6 +178,52 @@ class ThemeHelpers
   }
 
   /**
+   * Renderiza o componente de paginação
+   *
+   * @param WP_Query|null $query Objeto da query (opcional)
+   * @param array $args Argumentos personalizados para a paginação
+   */
+  public static function renderizar_paginacao($query = null, $args = [])
+  {
+    // Se não foi passada uma query, usa a query principal
+    if (!$query || !$query instanceof WP_Query) {
+      global $wp_query;
+      $query = $wp_query;
+    }
+
+    // Obtém informações da paginação
+    $total_pages = $query->max_num_pages;
+    $current_page = get_query_var('paged') ?: 1;
+
+    // Só exibe se há mais de uma página
+    if ($total_pages <= 1) {
+      return;
+    }
+
+    // Renderiza o componente
+    get_template_part('template-parts/pagination', 'simple', [
+      'query' => $query,
+      'args'  => $args
+    ]);
+  }
+
+  /**
+   * Verifica se deve exibir paginação
+   *
+   * @param WP_Query|null $query Objeto da query (opcional)
+   * @return bool True se deve exibir paginação
+   */
+  public static function deve_exibir_paginacao($query = null)
+  {
+    if (!$query || !$query instanceof WP_Query) {
+      global $wp_query;
+      $query = $wp_query;
+    }
+
+    return $query->max_num_pages > 1;
+  }
+
+  /**
    * Define o título personalizado da página para o header interno
    *
    * @param string $titulo Título personalizado da página
@@ -449,6 +495,22 @@ function criar_query($post_type, $posts_per_page = 8, $args_extras = [])
 function obter_redes_sociais($networks_config = [])
 {
   return ThemeHelpers::obter_redes_sociais($networks_config);
+}
+
+/**
+ * Função global para renderizar paginação
+ */
+function renderizar_paginacao($query = null, $args = [])
+{
+  return ThemeHelpers::renderizar_paginacao($query, $args);
+}
+
+/**
+ * Função global para verificar se deve exibir paginação
+ */
+function deve_exibir_paginacao($query = null)
+{
+  return ThemeHelpers::deve_exibir_paginacao($query);
 }
 
 /**

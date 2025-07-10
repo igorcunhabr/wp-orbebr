@@ -74,6 +74,12 @@ $card_template_exists = locate_template($card_template_path);
         <?php endif; ?>
     </div>
 
+    <!-- Paginação -->
+    <?php
+    // Renderiza o componente de paginação reutilizável
+    renderizar_paginacao($teams_query);
+    ?>
+
     <div class="w-full mt-16">
         <div class="max-w-[900px] bg-black rounded-[20px] p-10 m-auto">
             <div class="mb-5 text-center">

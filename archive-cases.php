@@ -44,25 +44,10 @@ $card_template_exists = locate_template($card_template_path);
     </div>
 
     <!-- Paginação -->
-    <?php if ($cases_query->max_num_pages > 1) : ?>
-        <div class="md:justify-start flex justify-center w-full mt-10">
-            <div class="flex gap-4">
-                <?php if ($cases_query->get('paged') > 1) : ?>
-                    <a href="<?php echo esc_url(get_pagenum_link($cases_query->get('paged') - 1)); ?>"
-                        class="px-6 py-3 bg-gray-200 hover:bg-gray-300 transition-all rounded-[10px] text-slate-950 text-lg font-normal">
-                        Anterior
-                    </a>
-                <?php endif; ?>
-
-                <?php if ($cases_query->get('paged') < $cases_query->max_num_pages) : ?>
-                    <a href="<?php echo esc_url(get_pagenum_link($cases_query->get('paged') + 1)); ?>"
-                        class="px-6 py-3 bg-amber-400 hover:bg-amber-500 transition-all rounded-[10px] text-slate-950 text-lg font-normal">
-                        Próxima
-                    </a>
-                <?php endif; ?>
-            </div>
-        </div>
-    <?php endif; ?>
+    <?php
+    // Renderiza o componente de paginação reutilizável
+    renderizar_paginacao($cases_query);
+    ?>
 </div>
 
 <?php wp_reset_postdata(); ?>

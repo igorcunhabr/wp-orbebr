@@ -116,7 +116,7 @@ class ThemeQueries
       'post_type'      => $post_type,
       'posts_per_page' => $posts_per_page ?: 8,
       'post_status'    => 'publish',
-      'no_found_rows'  => true,
+      'no_found_rows'  => false,
       'orderby'        => 'menu_order title',
       'order'          => 'ASC',
     ];

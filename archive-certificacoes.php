@@ -34,26 +34,6 @@ $card_template_exists = locate_template($card_template_path);
                 <?php endif; ?>
 
             <?php endwhile; ?>
-
-            <!-- Paginação -->
-            <div class="md:justify-start flex justify-center w-full mt-10">
-                <?php
-                $pagination = paginate_links([
-                    'prev_text' => '&laquo; Anterior',
-                    'next_text' => 'Próximo &raquo;',
-                    'type'      => 'array',
-                    'class'     => 'pagination',
-                    'total'     => $cert_query->max_num_pages,
-                    'current'   => $paged
-                ]);
-
-                if ($pagination) : ?>
-                    <nav class="pagination-wrapper" aria-label="Navegação de páginas">
-                        <?php echo implode('', $pagination); ?>
-                    </nav>
-                <?php endif; ?>
-            </div>
-
         <?php else : ?>
             <!-- Mensagem quando não há certificações -->
             <div class="text-center py-10">
@@ -61,6 +41,12 @@ $card_template_exists = locate_template($card_template_path);
                 <p class="text-lg text-gray-500">Ainda não temos certificações publicadas.</p>
             </div>
         <?php endif; ?>
+
+        <!-- Paginação -->
+        <?php
+        // Renderiza o componente de paginação reutilizável
+        renderizar_paginacao($cert_query);
+        ?>
 
     </div>
 </div>

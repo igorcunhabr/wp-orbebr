@@ -72,28 +72,10 @@ $card_template_exists = locate_template($card_template_path);
     </div>
   </div>
 
-  <?php if ($blogs_query->max_num_pages > 1) : ?>
-    <div class="w-full mt-10">
-      <?php
-      $pagination = paginate_links([
-        'prev_text' => __('&laquo; Anterior', 'textdomain'),
-        'next_text' => __('Próximo &raquo;', 'textdomain'),
-        'type'      => 'array',
-        'class'     => 'pagination',
-        'total'     => $blogs_query->max_num_pages,
-        'current'   => $paged
-      ]);
-      if ($pagination) : ?>
-        <nav class="flex justify-center" aria-label="<?php esc_attr_e('Navegação de páginas', 'textdomain'); ?>">
-          <ul class="flex space-x-2">
-            <?php foreach ($pagination as $link) : ?>
-              <li><?php echo $link; ?></li>
-            <?php endforeach; ?>
-          </ul>
-        </nav>
-      <?php endif; ?>
-    </div>
-  <?php endif; ?>
+  <?php
+  // Renderiza o componente de paginação reutilizável
+  renderizar_paginacao($blogs_query);
+  ?>
 </div>
 
 <?php wp_reset_postdata(); ?>
