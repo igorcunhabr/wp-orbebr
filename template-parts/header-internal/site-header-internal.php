@@ -28,12 +28,10 @@ $card_data = [
 // ===================================================================
 ?>
 
-<div>
-    <div class="bg-black relative h-[160px] lg:h-[310px]">
-        <x:header />
-        <h2
-            class="text-center text-white text-[24px] lg:text-[44px] font-medium pb-4 lg:pb-8 w-full absolute left-0 bottom-0">
-            titulo da pagina
-        </h2>
-    </div>
+<div class="bg-black relative h-[160px] lg:h-[310px]">
+    <?php get_template_part('template-parts/header/site-header'); ?>
+    <h2
+        class="text-center text-white text-[24px] lg:text-[44px] font-medium pb-4 lg:pb-8 w-full absolute left-0 bottom-0">
+        titulo da pagina
+    </h2>
 </div>

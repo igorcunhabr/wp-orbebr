@@ -18,4 +18,15 @@
 
 <body <?php body_class(); ?>>
 
-  <?php get_template_part('template-parts/header/site', 'header'); ?>
+  <?php
+  // Verificação dinâmica para escolher o header correto
+  $is_home = is_front_page() || is_home();
+
+  if ($is_home) {
+    // Header para página inicial (home)
+    get_template_part('template-parts/header/site', 'header');
+  } else {
+    // Header para outras páginas (internas)
+    get_template_part('template-parts/header-internal/site', 'header-internal');
+  }
+  ?>
