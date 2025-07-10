@@ -1,128 +1,146 @@
-# Orbe Brasil - Tema WordPress
+# WP OrbeBR - Tema WordPress
 
-Tema WordPress moderno e responsivo para a Orbe Brasil, desenvolvido com **Tailwind CSS 4** e foco em performance e simplicidade.
+Tema WordPress personalizado para a OrbeBR, desenvolvido com foco em performance, acessibilidade e manutenibilidade.
 
-## 🚀 Características
+## 🚀 Funcionalidades Implementadas
 
-- **Tailwind CSS 4** via CDN (sem build necessário)
-- Design responsivo e moderno
-- Performance otimizada
-- Acessibilidade (WCAG 2.1)
-- SEO otimizado
-- Suporte a ACF (Advanced Custom Fields)
+### 📝 Sistema de Blog
 
-## 📦 Estrutura do Projeto
+- **Post Type Personalizado**: `blogs` com suporte completo ao WordPress
+- **Página de Arquivo**: `archive-blogs.php` com listagem responsiva
+- **Cards Personalizados**: Template `card-blog.php` com design moderno
+- **Paginação**: Sistema de paginação com 8 posts por página
+- **Busca em Tempo Real**: Funcionalidade JavaScript para filtrar posts instantaneamente
+
+### 🎨 Design System
+
+- **Tailwind CSS**: Framework CSS utilitário para desenvolvimento rápido
+- **Fontes Customizadas**: Filson Pro (Light, Regular, Book, Medium)
+- **Cores Personalizadas**: Paleta de cores definida no tema
+- **Componentes Reutilizáveis**: Cards, botões, formulários padronizados
+
+### 📱 Responsividade
+
+- **Mobile First**: Design otimizado para dispositivos móveis
+- **Grid Responsivo**: Layout adaptativo para diferentes tamanhos de tela
+- **Menu Mobile**: Navegação otimizada para touch
+
+### ⚡ Performance
+
+- **Lazy Loading**: Carregamento otimizado de imagens
+- **Debounce**: Controle de frequência em buscas
+- **Animações CSS**: Transições suaves e performáticas
+
+## 📁 Estrutura do Projeto
 
 ```
-orbe-br/
+wp-orbebr/
 ├── assets/
 │   ├── css/
-│   │   └── swiper.min.css
-│   ├── fonts/
-│   │   └── FilsonPro*.woff2
-│   ├── img/
-│   │   └── *.svg, *.png
-│   └── js/
-│       ├── scripts.js
-│       ├── swiper.min.js
-│       ├── gsap.min.js
-│       └── ...
+│   │   ├── tailwind-custom.css    # Estilos customizados
+│   │   └── swiper.min.css         # CSS do Swiper
+│   ├── js/
+│   │   ├── scripts.js             # Scripts principais
+│   │   └── animations.js          # Animações
+│   ├── fonts/                     # Fontes customizadas
+│   └── img/                       # Imagens e ícones
 ├── inc/
-│   ├── assets.php
-│   ├── cleanup.php
-│   ├── custom-post-types.php
-│   └── ...
+│   ├── custom-post-types.php      # Registro de CPTs
+│   ├── queries.php                # Configurações de query
+│   └── assets.php                 # Carregamento de assets
 ├── template-parts/
-│   ├── header/
-│   ├── footer/
 │   └── content/
-├── header.php
-├── footer.php
-└── functions.php
+│       └── card-blog.php          # Template do card de blog
+├── archive-blogs.php              # Página de arquivo do blog
+└── functions.php                  # Arquivo principal do tema
 ```
 
-## 🎨 Tailwind CSS 4
+## 🛠️ Como Usar
 
-O tema utiliza **Tailwind CSS 4** via CDN com configurações customizadas:
+### 1. Criar Posts do Blog
 
-### Cores do Tema
+1. Acesse o painel administrativo do WordPress
+2. Vá para "Blogs" no menu lateral
+3. Clique em "Adicionar Novo"
+4. Preencha o título e conteúdo
+5. Adicione uma imagem em destaque (opcional)
+6. Publique o post
+
+### 2. Personalizar o Design
+
+- Edite `assets/css/tailwind-custom.css` para modificar estilos
+- Ajuste cores e fontes nas variáveis CSS
+- Modifique componentes no arquivo de estilos
+
+### 3. Adicionar Funcionalidades
+
+- Novos scripts em `assets/js/scripts.js`
+- Novos post types em `inc/custom-post-types.php`
+- Novos templates em `template-parts/`
+
+## 🎯 Funcionalidades do Blog
+
+### Busca em Tempo Real
+
+- Campo de busca funcional na página de arquivo
+- Filtragem instantânea por título e conteúdo
+- Debounce de 300ms para otimizar performance
+- Mensagem de "nenhum resultado" quando necessário
+
+### Paginação
+
+- 8 posts por página
+- Navegação intuitiva
+- Estilos personalizados para botões
+
+### Cards Responsivos
+
+- Layout em grid adaptativo
+- Hover effects suaves
+- Suporte a imagens em destaque
+- Fallback para posts sem imagem
+
+## 🔧 Configurações
+
+### Post Type "Blogs"
+
+```php
+// Configurações do post type
+'public'       => true,
+'has_archive'  => true,
+'rewrite'      => ['slug' => 'blogs'],
+'supports'     => ['title', 'editor', 'thumbnail'],
+'posts_per_page' => 8
+```
+
+### Estilos da Paginação
 
 ```css
-@theme {
-  --color-header-green: #50d71e;
-  --color-primary: #3b82f6;
-  --color-primary-dark: #2563eb;
-  --color-secondary: #64748b;
-  --color-accent: #f59e0b;
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 ```
 
-### Fontes
+## 📈 Próximos Passos
 
-- **Filson Pro** (fonte principal)
-- Pesos: 300 (light), 400 (regular), 500 (book), 600 (medium)
+1. **Implementar SEO Avançado**: Meta tags, schema markup
+2. **Adicionar Categorias**: Sistema de categorização para posts
+3. **Comentários**: Sistema de comentários personalizado
+4. **Cache**: Implementar cache para melhor performance
+5. **Analytics**: Integração com Google Analytics
 
-### Componentes Customizados
+## 🤝 Contribuição
 
-- Botões (`.btn`, `.btn-primary`, `.btn-secondary`, `.btn-outline`)
-- Cards (`.card`)
-- Gradientes (`.bg-gradient-primary`, `.bg-gradient-secondary`)
-- Animações (`.animate-fade-in`, `.animate-slide-up`)
+Para contribuir com o projeto:
 
-## 🛠️ Desenvolvimento
-
-### Pré-requisitos
-
-- WordPress 6.0+
-- PHP 8.0+
-- ACF Pro (recomendado)
-
-### Instalação
-
-1. Clone o repositório
-2. Ative o tema no WordPress
-3. Configure os menus e widgets
-4. Configure o ACF (se necessário)
-
-### Desenvolvimento Local
-
-```bash
-# Não é necessário build - Tailwind CSS 4 via CDN
-npm run dev
-```
-
-## 📱 Responsividade
-
-O tema é totalmente responsivo com breakpoints:
-
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: > 1024px
-
-## ♿ Acessibilidade
-
-- Navegação por teclado
-- Screen readers
-- Contraste adequado
-- ARIA labels
-- Foco visível
-
-## 🚀 Performance
-
-- Tailwind CSS 4 via CDN (sem build)
-- Lazy loading de imagens
-- Scripts com defer
-- Otimização de fontes
-- Minificação automática
+1. Faça um fork do repositório
+2. Crie uma branch para sua feature
+3. Implemente as mudanças
+4. Teste em diferentes dispositivos
+5. Envie um pull request
 
 ## 📄 Licença
 
-MIT License - veja o arquivo LICENSE para detalhes.
-
-## 👨‍💻 Desenvolvido por
-
-**Igor Cunha** - Engenheiro de Software Sênior
-
----
-
-> **Nota**: Este tema foi refatorado para usar Tailwind CSS 4 com abordagem simplificada, eliminando a necessidade de build e mantendo alta performance.
+Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.

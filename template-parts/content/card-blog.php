@@ -12,15 +12,12 @@
 // Define a URI do tema para uso nos assets (imagens, ícones, etc.)
 $template_uri = get_template_directory_uri();
 
-// Organiza os dados necessários para o card em um array para melhor clareza
-$card_data = [
-  'image_url'     => get_field('imagem')['url'] ?? null,
-  'image_alt'     => get_field('imagem')['alt'] ?? get_the_title(),
-  'date_iso'      => get_the_date('c'),
-  'date_display'  => get_the_date('j \d\e F \d\e Y'),
-  'permalink'     => get_the_permalink(),
-  'title_attr'    => the_title_attribute(['echo' => false]),
-];
+// Obtém a imagem usando a função helper com fallback inteligente
+$imagem_url = obter_imagem_post(get_the_ID(), 'imagem', 'medium');
+
+// Obtém a data formatada
+$data_iso = get_the_date('c');
+$data_exibicao = get_the_date('j \d\e F \d\e Y');
 
 // ===================================================================
 // [INÍCIO DO HTML]
@@ -29,38 +26,19 @@ $card_data = [
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('item'); ?>>
-  <a href="<?php echo esc_url($card_data['permalink']); ?>" title="<?php echo esc_attr($card_data['title_attr']); ?>">
-
-    <?php if ($card_data['image_url']) : ?>
-      <div class="cover">
+  <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+    <div class="relative w-full h-auto max-w-sm mx-auto rounded-[20px] overflow-hidden">
+      <?php if ($imagem_url) : ?>
         <img
-          src="<?php echo esc_url($card_data['image_url']); ?>"
-          alt="<?php echo esc_attr($card_data['image_alt']); ?>"
+          src="<?php echo esc_url($imagem_url); ?>"
+          alt="<?php echo esc_attr(get_the_title()); ?>"
+          class="relative z-0 w-full h-auto max-w-sm mx-auto"
           loading="lazy"
-          decoding="async" />
-      </div>
-    <?php endif; ?>
-
-    <div class="desc">
-
-      <div class="date" aria-label="<?php esc_attr_e('Data da publicação', 'textdomain'); ?>">
-        <img
-          src="<?php echo esc_url($template_uri . '/assets/img/icon-calendar.svg'); ?>"
-          alt="<?php esc_attr_e('Ícone calendário', 'textdomain'); ?>"
-          aria-hidden="true" />
-        <time datetime="<?php echo esc_attr($card_data['date_iso']); ?>">
-          <?php echo esc_html($card_data['date_display']); ?>
-        </time>
-      </div>
-
-      <h3><?php the_title(); ?></h3>
-
-      <div class="more" aria-hidden="true">
-        <img
-          src="<?php echo esc_url($template_uri . '/assets/img/icon-arrow-circle-right.svg'); ?>"
-          alt="<?php esc_attr_e('Ícone seta', 'textdomain'); ?>" />
-        <span><?php esc_html_e('Veja mais', 'textdomain'); ?></span>
+          decoding="async">
+      <?php endif; ?>
+      <div class="hover:opacity-40 absolute top-0 left-0 z-10 w-full h-full transition-opacity duration-300 bg-indigo-600 opacity-0">
       </div>
     </div>
+    <h2 class="mt-2 text-xl font-normal text-center text-black"><?php the_title(); ?></h2>
   </a>
 </article>

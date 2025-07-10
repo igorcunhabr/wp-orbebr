@@ -176,6 +176,63 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ===================================================================
+  // [BUSCA EM TEMPO REAL - BLOG]
+  // Implementa busca em tempo real para posts do blog
+  // ===================================================================
+
+  const searchInput = document.querySelector('#search input[type="text"]');
+  const postsContainer = document.getElementById("paginated-posts");
+  const noResultsMessage = document.querySelector(".no-results-message");
+
+  if (searchInput && postsContainer) {
+    let searchTimeout;
+
+    searchInput.addEventListener("input", function () {
+      const searchTerm = this.value.toLowerCase().trim();
+
+      // Limpar timeout anterior
+      clearTimeout(searchTimeout);
+
+      // Debounce para evitar muitas requisições
+      searchTimeout = setTimeout(() => {
+        searchPosts(searchTerm);
+      }, 300);
+    });
+
+    function searchPosts(searchTerm) {
+      const posts = postsContainer.querySelectorAll("article");
+      let hasVisiblePosts = false;
+
+      posts.forEach((post) => {
+        const title =
+          post.querySelector("h2, h3")?.textContent.toLowerCase() || "";
+        const content = post.textContent.toLowerCase();
+
+        if (
+          searchTerm === "" ||
+          title.includes(searchTerm) ||
+          content.includes(searchTerm)
+        ) {
+          post.style.display = "block";
+          post.classList.add("animate-fade-in");
+          hasVisiblePosts = true;
+        } else {
+          post.style.display = "none";
+        }
+      });
+
+      // Mostrar/esconder mensagem de "nenhum resultado"
+      if (noResultsMessage) {
+        if (hasVisiblePosts || searchTerm === "") {
+          noResultsMessage.style.display = "none";
+        } else {
+          noResultsMessage.style.display = "flex";
+        }
+      }
+    }
+  }
+
+  // ===================================================================
   // [UTILITÁRIOS]
   // Funções utilitárias
   // ===================================================================

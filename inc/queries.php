@@ -16,3 +16,12 @@ function definir_posts_por_pagina_para_livros($query)
   }
 }
 add_action('pre_get_posts', 'definir_posts_por_pagina_para_livros');
+
+// Filtro para definir quantidade de posts no arquivo de blogs
+function definir_posts_por_pagina_para_blogs($query)
+{
+  if (!is_admin() && $query->is_main_query() && is_post_type_archive('blogs')) {
+    $query->set('posts_per_page', 8);
+  }
+}
+add_action('pre_get_posts', 'definir_posts_por_pagina_para_blogs');

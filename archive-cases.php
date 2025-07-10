@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template para exibir o arquivo do post type personalizado "blogs".
+ * Template para exibir o arquivo do post type personalizado "cases".
  */
 
 get_header();
@@ -11,54 +11,59 @@ get_header();
 // Carregamento inicial e verificações de templates
 // ===================================================================
 
-
 $paged = get_query_var('paged') ? get_query_var('paged') : 1;
 query_posts([
-    'post_type'      => 'blogs',
+    'post_type'      => 'cases',
     'posts_per_page' => 8,
     'paged'          => $paged
 ]);
 
-// Verifica se o card de blog existe para evitar erro em tempo de execução
-$card_template_path   = 'template-parts/content/card-blog.php';
+// Verifica se o card de cases existe para evitar erro em tempo de execução
+$card_template_path   = 'template-parts/content/card-cases.php';
 $card_template_exists = locate_template($card_template_path);
 
 // ===================================================================
 // [INÍCIO DO HTML]
-// Estrutura de apresentação da listagem do blog
+// Estrutura de apresentação da listagem dos cases
 // ===================================================================
 ?>
 
 <div class="lg:my-20 container my-10">
     <div class="gap-14 flex flex-col">
-        <!-- abre -->
-        <article id="event-item" class="md:flex-row gap-7 md:gap-14 flex flex-col">
-            <div class="w-full md:basis-1/2">
-                <img
-                    class="w-full h-auto md:h-[520px] rounded-[20px] object-cover"
-                    src="imagem"
-                    alt="titulo">
+        <?php if (have_posts()) : ?>
+            <?php while (have_posts()) : the_post(); ?>
+                <?php if ($card_template_exists) : ?>
+                    <?php get_template_part('template-parts/content/card', 'cases'); ?>
+                <?php endif; ?>
+            <?php endwhile; ?>
+        <?php else : ?>
+            <div class="text-center py-10">
+                <h2 class="text-2xl font-medium text-gray-600">Nenhum case encontrado</h2>
+                <p class="text-lg text-gray-500 mt-4">Não há cases publicados no momento.</p>
             </div>
-
-            <div class="w-full md:basis-1/2 md:items-start flex flex-col items-center justify-center gap-5">
-                <div class="md:text-start text-center">
-                    <h2 class="text-2xl font-medium text-black">titulo</h2>
-                </div>
-                <div class="text-lg font-normal text-black">
-                    <div class="htmlchars">
-                        resumo
-                    </div>
-                </div>
-                <a class="w-[230px] h-[62px] bg-amber-400 hover:bg-amber-500 transition-all rounded-[10px] text-slate-950 text-xl font-normal flex justify-center items-center" href="url"
-                    title="Mais detalhes">Mais detalhes</a>
-            </div>
-        </article>
-        <!-- fecha -->
+        <?php endif; ?>
     </div>
 
-    <!-- <div class="md:justify-start flex justify-center w-full mt-10">
-        <buttom wire:click="loadMore" class="btn">Carregar Mais</buttom>
-    </div> -->
+    <!-- Paginação -->
+    <?php if (get_next_posts_link() || get_previous_posts_link()) : ?>
+        <div class="md:justify-start flex justify-center w-full mt-10">
+            <div class="flex gap-4">
+                <?php if (get_previous_posts_link()) : ?>
+                    <a href="<?php echo esc_url(get_previous_posts_page_link()); ?>"
+                        class="px-6 py-3 bg-gray-200 hover:bg-gray-300 transition-all rounded-[10px] text-slate-950 text-lg font-normal">
+                        Anterior
+                    </a>
+                <?php endif; ?>
+
+                <?php if (get_next_posts_link()) : ?>
+                    <a href="<?php echo esc_url(get_next_posts_page_link()); ?>"
+                        class="px-6 py-3 bg-amber-400 hover:bg-amber-500 transition-all rounded-[10px] text-slate-950 text-lg font-normal">
+                        Próxima
+                    </a>
+                <?php endif; ?>
+            </div>
+        </div>
+    <?php endif; ?>
 </div>
 
 <?php wp_reset_query(); ?>

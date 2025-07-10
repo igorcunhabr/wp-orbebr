@@ -106,4 +106,53 @@
 
 /* Custom Components */
 @layer components {
+  /* Pagination Styles */
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pagination a,
+  .pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding: 0 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .pagination a {
+    background-color: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+  }
+
+  .pagination a:hover {
+    background-color: #e5e7eb;
+    color: #111827;
+    border-color: #9ca3af;
+  }
+
+  .pagination .current {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+  }
+
+  .pagination .prev,
+  .pagination .next {
+    font-weight: 600;
+  }
+
+  .pagination .dots {
+    color: #6b7280;
+    pointer-events: none;
+  }
 }
