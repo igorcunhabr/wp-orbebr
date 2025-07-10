@@ -14,13 +14,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (menuButton && mobileMenu) {
     menuButton.addEventListener("click", function () {
-      const isOpen = mobileMenu.style.display !== "none";
+      const isOpen = mobileMenu.classList.contains("translate-x-0");
 
       if (isOpen) {
         // Fechar menu
-        mobileMenu.style.display = "none";
+        mobileMenu.classList.remove("translate-x-0");
+        mobileMenu.classList.add("-translate-x-full");
         mobileMenu.setAttribute("aria-hidden", "true");
         menuButton.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("menu-open");
 
         // Resetar ícone do menu
         if (menuSpans) {
@@ -30,15 +32,82 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       } else {
         // Abrir menu
-        mobileMenu.style.display = "block";
+        mobileMenu.classList.remove("-translate-x-full");
+        mobileMenu.classList.add("translate-x-0");
         mobileMenu.setAttribute("aria-hidden", "false");
         menuButton.setAttribute("aria-expanded", "true");
+        document.body.classList.add("menu-open");
 
         // Animar ícone do menu
         if (menuSpans && menuSpans.length >= 3) {
           menuSpans[0].classList.add("rotate-45");
           menuSpans[1].classList.add("opacity-0");
           menuSpans[2].classList.add("-rotate-45");
+        }
+      }
+    });
+
+    // Fechar menu ao clicar em um link
+    const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener("click", function () {
+        // Pequeno delay para permitir a navegação
+        setTimeout(() => {
+          mobileMenu.classList.remove("translate-x-0");
+          mobileMenu.classList.add("-translate-x-full");
+          mobileMenu.setAttribute("aria-hidden", "true");
+          menuButton.setAttribute("aria-expanded", "false");
+          document.body.classList.remove("menu-open");
+
+          // Resetar ícone do menu
+          if (menuSpans) {
+            menuSpans.forEach((span) => {
+              span.classList.remove("rotate-45", "-rotate-45", "opacity-0");
+            });
+          }
+        }, 100);
+      });
+    });
+
+    // Fechar menu ao pressionar ESC
+    document.addEventListener("keydown", function (event) {
+      if (
+        event.key === "Escape" &&
+        mobileMenu.classList.contains("translate-x-0")
+      ) {
+        mobileMenu.classList.remove("translate-x-0");
+        mobileMenu.classList.add("-translate-x-full");
+        mobileMenu.setAttribute("aria-hidden", "true");
+        menuButton.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("menu-open");
+
+        // Resetar ícone do menu
+        if (menuSpans) {
+          menuSpans.forEach((span) => {
+            span.classList.remove("rotate-45", "-rotate-45", "opacity-0");
+          });
+        }
+      }
+    });
+
+    // Fechar menu ao clicar fora dele
+    document.addEventListener("click", function (event) {
+      if (
+        mobileMenu.classList.contains("translate-x-0") &&
+        !mobileMenu.contains(event.target) &&
+        !menuButton.contains(event.target)
+      ) {
+        mobileMenu.classList.remove("translate-x-0");
+        mobileMenu.classList.add("-translate-x-full");
+        mobileMenu.setAttribute("aria-hidden", "true");
+        menuButton.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("menu-open");
+
+        // Resetar ícone do menu
+        if (menuSpans) {
+          menuSpans.forEach((span) => {
+            span.classList.remove("rotate-45", "-rotate-45", "opacity-0");
+          });
         }
       }
     });

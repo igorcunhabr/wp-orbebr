@@ -195,59 +195,179 @@
     color: #6b7280;
     pointer-events: none;
   }
+
+  /* ==========================================
+     MOBILE MENU STYLES
+     ========================================== */
+
+  /* Menu Mobile Container */
+  #mobile-menu {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* Menu Mobile Links */
+  #mobile-menu a {
+    position: relative;
+    overflow: hidden;
+  }
+
+  #mobile-menu a::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #ffd530, #ffd530);
+    transition: left 0.3s ease-in-out;
+  }
+
+  #mobile-menu a:hover::before {
+    left: 0;
+  }
+
+  /* Menu Button Animation */
+  #js-open-menu span {
+    transform-origin: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #js-open-menu span:nth-child(1) {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  #js-open-menu span:nth-child(2) {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+
+  #js-open-menu span:nth-child(3) {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  /* Menu Button Active State */
+  #js-open-menu[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  #js-open-menu[aria-expanded="true"] span:nth-child(2) {
+    transform: translateY(0) scale(0);
+    opacity: 0;
+  }
+
+  #js-open-menu[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* Menu Mobile Overlay */
+  #mobile-menu::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.98) 100%
+    );
+    z-index: -1;
+  }
+
+  /* Menu Mobile Content Animation */
+  #mobile-menu > div {
+    animation: slideInFromLeft 0.4s ease-out;
+  }
+
+  @keyframes slideInFromLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Prevent body scroll when menu is open */
+  body.menu-open {
+    overflow: hidden;
+  }
+
+  /* Menu Mobile Social Icons */
+  #mobile-menu .social-icons a {
+    transition: all 0.3s ease;
+  }
+
+  #mobile-menu .social-icons a:hover {
+    transform: scale(1.1);
+  }
+
+  /* Menu Mobile Language Selector */
+  #mobile-menu .language-selector a {
+    transition: all 0.3s ease;
+  }
+
+  #mobile-menu .language-selector a:hover {
+    transform: scale(1.05);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    #mobile-menu > div {
+      padding-top: 6rem;
+    }
+
+    #mobile-menu a {
+      font-size: 1.25rem;
+      padding: 0.75rem 0;
+    }
+  }
 }
 
 /* ==========================================
-   FORÇA CARREGAMENTO DAS FONTES
+   GLOBAL STYLES
    ========================================== */
 
-/* Force font loading with high specificity */
 html.no-js,
-html.js,
-html {
-  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+html.no-js * {
+  animation: none !important;
+  transition: none !important;
 }
 
 body {
   font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
 }
 
-/* Override Tailwind defaults */
 .font-sans {
   font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-/* Ensure font weights are applied */
 .font-light,
-.font-extralight {
+.font-light * {
   font-weight: 300 !important;
-  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }
 
 .font-normal,
-.font-regular {
+.font-normal * {
   font-weight: 400 !important;
-  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }
 
 .font-medium {
-  font-weight: 500 !important;
-  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+  font-weight: 600 !important;
 }
 
 .font-semibold {
   font-weight: 600 !important;
-  font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif !important;
 }
 
-/* Override all headings */
 h1,
 h2,
 h3,
@@ -255,17 +375,15 @@ h4,
 h5,
 h6 {
   font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
-/* Override all paragraph and text elements */
 p,
-span,
-div,
-a,
 li,
-td,
-th {
+span,
+div {
   font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif !important;
+    Roboto, "Helvetica Neue", Arial, sans-serif;
 }

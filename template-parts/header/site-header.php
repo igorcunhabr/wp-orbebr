@@ -41,8 +41,9 @@ foreach ($social_networks_config as $network) {
 // ===================================================================
 ?>
 
-<header id="header" class="lg:absolute lg:bg-transparent relative top-0 left-0 z-10 w-full bg-black">
+<header id="header" class="lg:absolute lg:bg-transparent relative top-0 left-0 z-50 w-full bg-black">
   <div class="lg:py-7 max-w-[90%] m-auto relative flex items-center justify-between py-4">
+    <!-- Logo -->
     <div>
       <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" class="flex items-center hover-scale">
         <img src="<?php echo esc_url($template_uri . '/assets/img/logo.svg'); ?>"
@@ -51,46 +52,50 @@ foreach ($social_networks_config as $network) {
       </a>
     </div>
 
-    <?php
-    wp_nav_menu([
-      'theme_location' => 'nav-header',
-      'container'      => false,
-      'menu_id'        => 'primary-menu',
-      'menu_class'     => 'md:flex md:items-center z-20 md:z-auto md:static absolute bg-white md:bg-transparent w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100 opacity-0 top-[-400px] transition-all ease-in duration-500',
-      'fallback_cb'    => false,
-      'walker'         => new class extends Walker_Nav_Menu {
-        public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
-        {
-          $classes = empty($item->classes) ? [] : (array) $item->classes;
-          $classes[] = 'md:my-0 mx-4 my-6'; // mesma classe de <li> no seu código original
+    <!-- Menu Desktop -->
+    <nav class="hidden lg:block">
+      <?php
+      wp_nav_menu([
+        'theme_location' => 'nav-header',
+        'container'      => false,
+        'menu_id'        => 'primary-menu-desktop',
+        'menu_class'     => 'flex items-center space-x-8',
+        'fallback_cb'    => false,
+        'walker'         => new class extends Walker_Nav_Menu {
+          public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
+          {
+            $classes = empty($item->classes) ? [] : (array) $item->classes;
+            $classes[] = '';
 
-          $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
-          $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
+            $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
+            $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
 
-          $id = apply_filters('nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args);
-          $id = $id ? ' id="' . esc_attr($id) . '"' : '';
+            $id = apply_filters('nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args);
+            $id = $id ? ' id="' . esc_attr($id) . '"' : '';
 
-          $output .= '<li' . $id . $class_names . '>';
+            $output .= '<li' . $id . $class_names . '>';
 
-          $attributes = ! empty($item->attr_title) ? ' title="'  . esc_attr($item->attr_title) . '"' : '';
-          $attributes .= ! empty($item->target)     ? ' target="' . esc_attr($item->target) . '"' : '';
-          $attributes .= ! empty($item->xfn)        ? ' rel="'    . esc_attr($item->xfn) . '"' : '';
-          $attributes .= ! empty($item->url)        ? ' href="'   . esc_url($item->url) . '"' : '';
+            $attributes = ! empty($item->attr_title) ? ' title="'  . esc_attr($item->attr_title) . '"' : '';
+            $attributes .= ! empty($item->target)     ? ' target="' . esc_attr($item->target) . '"' : '';
+            $attributes .= ! empty($item->xfn)        ? ' rel="'    . esc_attr($item->xfn) . '"' : '';
+            $attributes .= ! empty($item->url)        ? ' href="'   . esc_url($item->url) . '"' : '';
 
-          $item_output  = $args->before;
-          $item_output .= '<a' . $attributes . ' class="text-zinc-500 lg:text-white hover:text-[#FFD530] text-[16px] duration-500">';
-          $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
-          $item_output .= '</a>';
-          $item_output .= $args->after;
+            $item_output  = $args->before;
+            $item_output .= '<a' . $attributes . ' class="text-white hover:text-[#FFD530] text-[16px] font-medium duration-300 transition-colors">';
+            $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
+            $item_output .= '</a>';
+            $item_output .= $args->after;
 
-          $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
+            $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
+          }
         }
-      }
-    ]);
-    ?>
+      ]);
+      ?>
+    </nav>
 
+    <!-- Redes Sociais Desktop -->
     <?php if (!empty($social_links)) : ?>
-      <div class="lg:flex hidden gap-1">
+      <div class="hidden lg:flex gap-3">
         <?php foreach ($social_links as $link) : ?>
           <a href="<?php echo $link['url']; ?>"
             target="_blank"
@@ -103,14 +108,99 @@ foreach ($social_networks_config as $network) {
       </div>
     <?php endif; ?>
 
-    <div class="lg:flex hidden gap-1">
+    <!-- Seletor de Idioma Desktop -->
+    <div class="hidden lg:flex gap-2">
       <a href="javascript:trocarIdioma('pt')" class="hover:opacity-65 transition-opacity" title="Português">
         <img src="<?php echo esc_url($template_uri . '/assets/img/lang-pt.svg'); ?>" alt="Português">
       </a>
-
       <a href="javascript:trocarIdioma('en')" class="hover:opacity-65 transition-opacity" title="English">
         <img src="<?php echo esc_url($template_uri . '/assets/img/lang-en.svg'); ?>" alt="English">
       </a>
+    </div>
+
+    <!-- Botão Menu Mobile -->
+    <button id="js-open-menu"
+      class="lg:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 z-50"
+      aria-label="Abrir menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu">
+      <span class="w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"></span>
+      <span class="w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"></span>
+      <span class="w-6 h-0.5 bg-white transition-all duration-300 ease-in-out"></span>
+    </button>
+  </div>
+
+  <!-- Menu Mobile -->
+  <div id="mobile-menu"
+    class="lg:hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-95 z-40 transform -translate-x-full transition-transform duration-300 ease-in-out"
+    aria-hidden="true">
+
+    <div class="flex flex-col h-full pt-20 px-6">
+      <!-- Menu de Navegação Mobile -->
+      <nav class="flex-1">
+        <?php
+        wp_nav_menu([
+          'theme_location' => 'nav-header',
+          'container'      => false,
+          'menu_id'        => 'primary-menu-mobile',
+          'menu_class'     => 'space-y-6',
+          'fallback_cb'    => false,
+          'walker'         => new class extends Walker_Nav_Menu {
+            public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0)
+            {
+              $classes = empty($item->classes) ? [] : (array) $item->classes;
+              $classes[] = '';
+
+              $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
+              $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
+
+              $id = apply_filters('nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args);
+              $id = $id ? ' id="' . esc_attr($id) . '"' : '';
+
+              $output .= '<li' . $id . $class_names . '>';
+
+              $attributes = ! empty($item->attr_title) ? ' title="'  . esc_attr($item->attr_title) . '"' : '';
+              $attributes .= ! empty($item->target)     ? ' target="' . esc_attr($item->target) . '"' : '';
+              $attributes .= ! empty($item->xfn)        ? ' rel="'    . esc_attr($item->xfn) . '"' : '';
+              $attributes .= ! empty($item->url)        ? ' href="'   . esc_url($item->url) . '"' : '';
+
+              $item_output  = $args->before;
+              $item_output .= '<a' . $attributes . ' class="block text-white hover:text-[#FFD530] text-xl font-medium duration-300 transition-colors py-2">';
+              $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
+              $item_output .= '</a>';
+              $item_output .= $args->after;
+
+              $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
+            }
+          }
+        ]);
+        ?>
+      </nav>
+
+      <!-- Redes Sociais Mobile -->
+      <?php if (!empty($social_links)) : ?>
+        <div class="flex justify-center gap-4 py-8 border-t border-gray-700 social-icons">
+          <?php foreach ($social_links as $link) : ?>
+            <a href="<?php echo $link['url']; ?>"
+              target="_blank"
+              rel="noopener"
+              aria-label="<?php echo esc_attr($link['label']); ?>"
+              class="hover:opacity-65 transition-opacity">
+              <img src="<?php echo $link['icon']; ?>" alt="<?php echo esc_attr($link['label']); ?>">
+            </a>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+
+      <!-- Seletor de Idioma Mobile -->
+      <div class="flex justify-center gap-4 py-4 language-selector">
+        <a href="javascript:trocarIdioma('pt')" class="hover:opacity-65 transition-opacity" title="Português">
+          <img src="<?php echo esc_url($template_uri . '/assets/img/lang-pt.svg'); ?>" alt="Português">
+        </a>
+        <a href="javascript:trocarIdioma('en')" class="hover:opacity-65 transition-opacity" title="English">
+          <img src="<?php echo esc_url($template_uri . '/assets/img/lang-en.svg'); ?>" alt="English">
+        </a>
+      </div>
     </div>
   </div>
 </header>
