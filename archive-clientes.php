@@ -46,11 +46,6 @@ $card_template_exists = locate_template($card_template_path);
             <?php while ($clientes_query->have_posts()) : $clientes_query->the_post(); ?>
                 <?php if ($card_template_exists) : ?>
                     <?php get_template_part('template-parts/content/card', 'clientes'); ?>
-                <?php else : ?>
-                    <!-- Fallback se o template do card não existir -->
-                    <article class="md:flex-row md:gap-8 md:items-center flex flex-col gap-4">
-                        <h2 class="text-2xl font-medium text-black"><?php the_title(); ?></h2>
-                    </article>
                 <?php endif; ?>
             <?php endwhile; ?>
         <?php else : ?>

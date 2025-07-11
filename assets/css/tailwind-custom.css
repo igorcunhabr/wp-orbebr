@@ -1,8 +1,10 @@
-/* Tailwind CSS 4 Customizations */
+/* =========================================================
+   TAILWIND CUSTOMIZAÇÕES E ESTILOS GERAIS
+   ========================================================= */
 
-/* ==========================================
-   CUSTOM FONTS - FILSON PRO FAMILY
-   ========================================== */
+/* =========================================================
+   FONTES PERSONALIZADAS - FILSON PRO FAMILY
+   ========================================================= */
 @font-face {
   font-family: "Filson Pro";
   src: url("../fonts/FilsonProLight.woff2") format("woff2");
@@ -35,7 +37,9 @@
   font-display: swap;
 }
 
-/* Custom Colors */
+/* =========================================================
+   CORES CUSTOMIZADAS (CSS Variables para Tailwind)
+   ========================================================= */
 @theme {
   --color-primary: #da373d;
   --color-secondary: #1f2937;
@@ -45,7 +49,9 @@
   --color-error: #ef4444;
 }
 
-/* Custom Fonts */
+/* =========================================================
+   FAMÍLIAS DE FONTES CUSTOMIZADAS
+   ========================================================= */
 @theme {
   --font-family-sans: "Filson Pro", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -53,7 +59,9 @@
   --font-family-mono: "Monaco", "Consolas", monospace;
 }
 
-/* Custom Font Weights */
+/* =========================================================
+   PESOS DE FONTES CUSTOMIZADOS
+   ========================================================= */
 @theme {
   --font-weight-light: 300;
   --font-weight-normal: 400;
@@ -61,7 +69,9 @@
   --font-weight-semibold: 600;
 }
 
-/* Custom Spacing */
+/* =========================================================
+   ESPAÇAMENTOS CUSTOMIZADOS
+   ========================================================= */
 @theme {
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
@@ -71,7 +81,9 @@
   --spacing-2xl: 3rem;
 }
 
-/* Custom Breakpoints */
+/* =========================================================
+   BREAKPOINTS CUSTOMIZADOS
+   ========================================================= */
 @theme {
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
@@ -80,7 +92,9 @@
   --breakpoint-2xl: 1536px;
 }
 
-/* Custom Utilities */
+/* =========================================================
+   UTILITÁRIOS CUSTOMIZADOS (Tailwind @layer utilities)
+   ========================================================= */
 @layer utilities {
   html {
     font-family: var(--font-family-sans);
@@ -131,13 +145,15 @@
   }
 }
 
-/* Custom Components */
+/* =========================================================
+   COMPONENTES CUSTOMIZADOS (Tailwind @layer components)
+   ========================================================= */
 @layer components {
 }
 
-/* ==========================================
-  MOBILE MENU STYLES
-  ========================================== */
+/* =========================================================
+   ESTILOS DO MENU MOBILE
+   ========================================================= */
 
 /* Menu Mobile Container */
 #mobile-menu {
@@ -269,9 +285,9 @@ body.menu-open {
   }
 }
 
-/* ==========================================
-   GLOBAL STYLES
-   ========================================== */
+/* =========================================================
+   ESTILOS GLOBAIS
+   ========================================================= */
 
 html.no-js,
 html.no-js * {
@@ -329,7 +345,29 @@ div {
     Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-/* Resetar todos os estilos do CF7 */
+.htmlchars p {
+  font-size: 1.125rem; /* text-lg ≈ 18px */
+  color: black;
+  margin-bottom: 0.75rem; /* mb-3 ≈ 12px */
+}
+
+.htmlchars p bold {
+  font-weight: bold;
+}
+
+.htmlchars p a {
+  font-size: 1.125rem;
+  color: black;
+  text-decoration: none;
+}
+
+.htmlchars a:hover {
+  text-decoration: underline;
+}
+
+/* =========================================================
+   RESET DE ESTILOS PARA FORMULÁRIOS (CF7)
+   ========================================================= */
 /* Reset geral de campos do CF7 */
 .wpcf7-form-control {
   all: unset;
@@ -413,6 +451,9 @@ div {
   width: 100%;
 }
 
+/* =========================================================
+   INPUTS E BOTÕES CUSTOMIZADOS
+   ========================================================= */
 .form-input {
   background-color: #e2e8f0; /* bg-slate-200 */
   color: #000000; /* text-black */
@@ -482,3 +523,7 @@ div {
 .btn-secondary:hover {
   background-color: #ffba30;
 }
+
+/* =========================================================
+   FIM DO ARQUIVO
+   ========================================================= */

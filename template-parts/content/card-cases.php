@@ -10,7 +10,7 @@ $card_data = [
     'image_alt'     => esc_attr(get_field('imagem')['alt'] ?? get_the_title()),
     'permalink'     => esc_url(get_the_permalink()),
     'title_attr'    => esc_attr(the_title_attribute(['echo' => false])),
-    'descricao'     => get_field('descricao') ?? '',
+    'resumo'     => get_field('resumo') ?? '',
 ];
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('md:flex-row gap-7 md:gap-14 flex flex-col'); ?>>
@@ -30,7 +30,7 @@ $card_data = [
         </div>
         <div class="text-lg font-normal text-black">
             <div class="htmlchars">
-                <?php echo wp_kses_post($card_data['descricao']); ?>
+                <?php echo wp_kses_post($card_data['resumo']); ?>
             </div>
         </div>
         <a class="w-[230px] h-[62px] bg-amber-400 hover:bg-amber-500 transition-all rounded-[10px] text-slate-950 text-xl font-normal flex justify-center items-center"
