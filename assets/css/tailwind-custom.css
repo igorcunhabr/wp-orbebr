@@ -133,141 +133,139 @@
 
 /* Custom Components */
 @layer components {
-  
 }
 
 /* ==========================================
   MOBILE MENU STYLES
   ========================================== */
 
-  /* Menu Mobile Container */
-  #mobile-menu {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-  }
+/* Menu Mobile Container */
+#mobile-menu {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
 
-  /* Menu Mobile Links */
-  #mobile-menu a {
-    position: relative;
-    overflow: hidden;
-  }
+/* Menu Mobile Links */
+#mobile-menu a {
+  position: relative;
+  overflow: hidden;
+}
 
-  #mobile-menu a::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, #ffd530, #ffd530);
-    transition: left 0.3s ease-in-out;
-  }
+#mobile-menu a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #ffd530, #ffd530);
+  transition: left 0.3s ease-in-out;
+}
 
-  #mobile-menu a:hover::before {
-    left: 0;
-  }
+#mobile-menu a:hover::before {
+  left: 0;
+}
 
-  /* Menu Button Animation */
-  #js-open-menu {
-    position: relative;
-  }
+/* Menu Button Animation */
+#js-open-menu {
+  position: relative;
+}
 
-  #js-open-menu span {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background-color: white;
-    margin: 3px 0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-origin: center;
-  }
+#js-open-menu span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: white;
+  margin: 3px 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
 
-  /* Menu Button Active State - X Formation */
-  #js-open-menu[aria-expanded="true"] span:nth-child(1) {
-    transform: translateY(5px) rotate(45deg);
-    background-color: #ffd530;
-  }
+/* Menu Button Active State - X Formation */
+#js-open-menu[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+  background-color: #ffd530;
+}
 
-  #js-open-menu[aria-expanded="true"] span:nth-child(2) {
+#js-open-menu[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+  transform: scale(0);
+}
+
+#js-open-menu[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-5px) rotate(-45deg);
+  background-color: #ffd530;
+}
+
+/* Hover effect for menu button */
+#js-open-menu:hover span {
+  background-color: #ffd530;
+}
+
+/* Menu Mobile Overlay */
+#mobile-menu::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(0, 0, 0, 0.98) 100%
+  );
+  z-index: -1;
+}
+
+/* Menu Mobile Content Animation */
+#mobile-menu > div {
+  animation: slideInFromLeft 0.4s ease-out;
+}
+
+@keyframes slideInFromLeft {
+  from {
     opacity: 0;
-    transform: scale(0);
+    transform: translateX(-20px);
   }
-
-  #js-open-menu[aria-expanded="true"] span:nth-child(3) {
-    transform: translateY(-5px) rotate(-45deg);
-    background-color: #ffd530;
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
+}
 
-  /* Hover effect for menu button */
-  #js-open-menu:hover span {
-    background-color: #ffd530;
-  }
+/* Prevent body scroll when menu is open */
+body.menu-open {
+  overflow: hidden;
+}
 
-  /* Menu Mobile Overlay */
-  #mobile-menu::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(0, 0, 0, 0.98) 100%
-    );
-    z-index: -1;
-  }
+/* Menu Mobile Social Icons */
+#mobile-menu .social-icons a {
+  transition: all 0.3s ease;
+}
 
-  /* Menu Mobile Content Animation */
+#mobile-menu .social-icons a:hover {
+  transform: scale(1.1);
+}
+
+/* Menu Mobile Language Selector */
+#mobile-menu .language-selector a {
+  transition: all 0.3s ease;
+}
+
+#mobile-menu .language-selector a:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
   #mobile-menu > div {
-    animation: slideInFromLeft 0.4s ease-out;
+    padding-top: 6rem;
   }
 
-  @keyframes slideInFromLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-
-  /* Prevent body scroll when menu is open */
-  body.menu-open {
-    overflow: hidden;
-  }
-
-  /* Menu Mobile Social Icons */
-  #mobile-menu .social-icons a {
-    transition: all 0.3s ease;
-  }
-
-  #mobile-menu .social-icons a:hover {
-    transform: scale(1.1);
-  }
-
-  /* Menu Mobile Language Selector */
-  #mobile-menu .language-selector a {
-    transition: all 0.3s ease;
-  }
-
-  #mobile-menu .language-selector a:hover {
-    transform: scale(1.05);
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 640px) {
-    #mobile-menu > div {
-      padding-top: 6rem;
-    }
-
-    #mobile-menu a {
-      font-size: 1.25rem;
-      padding: 0.75rem 0;
-    }
+  #mobile-menu a {
+    font-size: 1.25rem;
+    padding: 0.75rem 0;
   }
 }
 
@@ -329,4 +327,158 @@ span,
 div {
   font-family: "Filson Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Resetar todos os estilos do CF7 */
+/* Reset geral de campos do CF7 */
+.wpcf7-form-control {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  appearance: none;
+}
+
+/* Campos de texto, email, textarea, etc. */
+.wpcf7-text,
+.wpcf7-email,
+.wpcf7-url,
+.wpcf7-tel,
+.wpcf7-number,
+.wpcf7-textarea,
+.wpcf7-select {
+  all: unset;
+  box-sizing: border-box;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  appearance: none;
+}
+
+/* Botão de envio */
+.wpcf7-submit {
+  all: unset;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  border: none;
+  appearance: none;
+}
+
+/* Mensagens de erro (texto abaixo do campo) */
+.wpcf7-not-valid-tip {
+  margin-top: 4px;
+  font-size: 14px;
+  color: #dc2626; /* Tailwind's red-600 */
+  display: block;
+}
+
+/* Campos com erro (visual) */
+.wpcf7-not-valid {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Mensagens de resposta do formulário */
+.wpcf7-response-output {
+  margin-top: 1rem;
+  padding: 0;
+  border: none;
+  font-size: 1rem;
+  color: #1e293b; /* Tailwind's slate-800 */
+  background: transparent;
+}
+
+/* Evita margens/padding automáticos */
+.wpcf7,
+.wpcf7-form {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.form-input {
+  background-color: #e2e8f0; /* bg-slate-200 */
+  color: #000000; /* text-black */
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 400; /* font-normal */
+  border-radius: 10px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px #e2e8f0; /* ring-1 ring-inset ring-slate-200 */
+  display: block;
+  width: 100%;
+  padding-top: 1.25rem; /* py-5 */
+  padding-bottom: 1.25rem;
+  padding-left: 1.5rem; /* px-6 */
+  padding-right: 1.5rem;
+  placeholder-color: #000000; /* placeholder-black */
+}
+
+.form-input::placeholder {
+  color: #000000;
+}
+
+.form-input:focus {
+  outline: none;
+  box-shadow: inset 0 0 0 1px #312e81; /* ring-1 ring-inset ring-indigo-900 */
+}
+
+.form-input:focus::placeholder {
+  color: #000000;
+}
+
+.btn {
+  width: 230px;
+  height: 62px;
+  background-color: #000000; /* bg-black */
+  border-radius: 10px;
+  text-align: center;
+  color: #ffffff; /* text-white */
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 400; /* font-normal */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #1e293b; /* hover:bg-slate-800 */
+}
+
+.btn-secondary {
+  width: 230px;
+  height: 62px;
+  background-color: #ffd530;
+  border-radius: 10px;
+  text-align: center;
+  color: #413281;
+  font-size: 1.25rem;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: #ffba30;
 }

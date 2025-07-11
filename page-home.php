@@ -165,7 +165,9 @@ $servicos_query = criar_query('servicos', 6, [
       <h2 class="text-3xl font-bold text-indigo-900">FALE COM UM DE NOSSOS ESPECIALISTAS</h2>
     </div>
 
-    <?php echo do_shortcode('[contact-form-7 id="2f9d491" title="Fale Conosco"]'); ?>
+    <div class="w-full max-w-[770px] m-auto">
+      <?php echo do_shortcode('[contact-form-7 id="2f9d491" title="Fale Conosco"]'); ?>
+    </div>
   </div>
 </section>
 
