@@ -22,7 +22,7 @@ class ThemeQueries
     'cases'       => 6,
     'servicos'    => 6,
     'clientes'    => 12,
-    'certificacoes' => 12,
+    'certificacoes' => 8,
     'teams'       => 8,
     'banners'     => 10,
   ];
