@@ -6,7 +6,7 @@
 
 $template_uri = get_template_directory_uri();
 $card_data = [
-    'image_url'     => obter_imagem_post(get_the_ID(), 'imagem', 'large', $template_uri . '/assets/img/placeholder.png'),
+    'image_url'     => obter_imagem_post(get_the_ID(), 'imagem', 'large', $template_uri . '/assets/img/default.png'),
     'image_alt'     => esc_attr(get_field('imagem')['alt'] ?? get_the_title()),
     'permalink'     => esc_url(get_the_permalink()),
     'title_attr'    => esc_attr(the_title_attribute(['echo' => false])),

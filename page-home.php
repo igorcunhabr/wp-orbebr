@@ -43,7 +43,7 @@ $servicos_query = criar_query('servicos', 6, [
         <?php while ($banners_query->have_posts()) : $banners_query->the_post(); ?>
           <?php
           $banner_id = get_the_ID();
-          $banner_image = obter_imagem_post($banner_id, 'imagem', 'full', $template_uri . '/assets/img/bg-section.png');
+          $banner_image = obter_imagem_post($banner_id, 'imagem', 'full', $template_uri . '/assets/img/default.png');
           $banner_title = get_the_title();
           $banner_subtitle = obter_campo_acf('subtitulo', $banner_id);
           ?>
@@ -88,7 +88,7 @@ $servicos_query = criar_query('servicos', 6, [
         }
       }
 
-      $case_image = obter_imagem_post($case_id, 'imagem', 'medium', $template_uri . '/assets/img/bg-section.png');
+      $case_image = obter_imagem_post($case_id, 'imagem', 'medium', $template_uri . '/assets/img/default.png');
       ?>
       <?php static $event_index = 1; ?>
       <article id="event-<?php echo $event_index; ?>" class="group relative transition-all">

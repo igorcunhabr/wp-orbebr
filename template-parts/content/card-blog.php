@@ -5,7 +5,7 @@
  */
 
 $template_uri = get_template_directory_uri();
-$imagem_url = obter_imagem_post(get_the_ID(), 'imagem', 'medium', $template_uri . '/assets/img/placeholder.png');
+$imagem_url = obter_imagem_post(get_the_ID(), 'imagem', 'medium', $template_uri . '/assets/img/default.png');
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('item'); ?>>
   <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
