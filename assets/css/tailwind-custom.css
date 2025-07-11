@@ -526,29 +526,29 @@ div {
 
 /* Estilo base da resposta */
 .wpcf7-response-output {
-  text-align: center;
-  padding: 15px 20px;
-  margin-top: 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  font-size: 16px;
-  box-sizing: border-box;
+  text-align: center !important;
+  padding: 15px 20px !important;
+  margin-top: 20px !important;
+  border-radius: 5px !important;
+  font-weight: bold !important;
+  font-size: 16px !important;
+  box-sizing: border-box !important;
 }
 
 /* Mensagem de sucesso */
 .wpcf7-mail-sent-ok {
-  background-color: #e6ffed;
-  color: #267a3c;
-  border: 2px solid #267a3c;
+  background-color: #267a3c !important;
+  color: #ffffff !important;
+  border: 2px solid #267a3c !important;
 }
 
 /* Mensagem de erro geral (falha ao enviar, campos inválidos, etc.) */
 .wpcf7-validation-errors,
 .wpcf7-mail-sent-ng,
 .wpcf7-acceptance-missing {
-  background-color: #ffe6e6;
-  color: #a12626;
-  border: 2px solid #a12626;
+  background-color: #a12626 !important;
+  color: #ffffff !important;
+  border: 2px solid #a12626 !important;
 }
 
 /* =========================================================

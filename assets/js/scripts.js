@@ -302,4 +302,19 @@ document.addEventListener("DOMContentLoaded", function () {
       interval: 200,
     }
   );
+
+  // ===================================================================
+  // [CONTACT FORM 7] - Reposiciona mensagem de resposta no topo do formulário
+  // ===================================================================
+  document.addEventListener(
+    "wpcf7submit",
+    function (event) {
+      var form = event.target;
+      var response = form.querySelector(".wpcf7-response-output");
+      if (response) {
+        form.insertBefore(response, form.firstChild);
+      }
+    },
+    false
+  );
 });
