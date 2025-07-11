@@ -37,7 +37,7 @@ $servicos_query = criar_query('servicos', 6, [
 ?>
 
 <section id="banner" class="relative w-full">
-  <div class="swiper bannerSwiper">
+  <div class="swiper bannerSwiper w-full h-[200px] lg:h-auto relative">
     <div class="swiper-wrapper">
       <?php if ($banners_query->have_posts()) : ?>
         <?php while ($banners_query->have_posts()) : $banners_query->the_post(); ?>
