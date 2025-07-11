@@ -87,7 +87,9 @@ $servicos_query = criar_query('servicos', 6, [
 
       $case_image = obter_imagem_post($case_id, 'imagem', 'medium', $template_uri . '/assets/img/bg-section.png');
       ?>
-      <article class="group relative transition-all">
+      <?php static $event_index = 1; ?>
+      <article id="event-<?php echo $event_index; ?>" class="group relative transition-all">
+        <?php $event_index = ($event_index < 10) ? $event_index + 1 : 1; ?>
         <a href="<?php echo esc_url($case_link); ?>" title="<?php echo esc_attr($case_title); ?>">
           <div class="hover:group relative">
             <img src="<?php echo esc_url($case_image); ?>"
@@ -131,7 +133,9 @@ $servicos_query = criar_query('servicos', 6, [
             }
           }
           ?>
-          <article class="opacity-75 bg-gray-950 p-[32px] rounded-[40px] border-2 border-slate-900 hover:border-amber-400 transition-all">
+          <?php static $service_index = 1; ?>
+          <article id="service-<?php echo $service_index; ?>" class="opacity-75 bg-gray-950 p-[32px] rounded-[40px] border-2 border-slate-900 hover:border-amber-400 transition-all">
+            <?php $service_index = ($service_index < 6) ? $service_index + 1 : 1; ?>
             <div class="w-20 h-20 bg-slate-900 rounded-[20px] flex items-center justify-center mb-6">
               <?php if (is_array($servico_icon) && isset($servico_icon['url'])) : ?>
                 <img src="<?php echo esc_url($servico_icon['url']); ?>"

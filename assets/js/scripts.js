@@ -302,6 +302,4 @@ document.addEventListener("DOMContentLoaded", function () {
       interval: 200,
     }
   );
-
-  console.log("Scripts do tema carregados com sucesso! 🚀");
 });
