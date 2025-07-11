@@ -34,8 +34,28 @@ $template_uri = get_template_directory_uri();
 ?>
         <div class="lg:my-20 container my-10">
             <div class="max-w-[900px] mx-auto">
+                <?php if (!empty($post_data['cover_image']['url']) && count($post_data['gallery']) === 0) : ?>
+                    <div class="rounded-[10px] h-[300px] lg:h-[480px] overflow-hidden mb-8">
+                        <a data-fslightbox="gallery" href="<?php echo $post_data['cover_image']['url']; ?>">
+                            <img src="<?php echo $post_data['cover_image']['url']; ?>"
+                                alt="<?php echo $post_data['cover_image']['alt']; ?>"
+                                class="object-cover w-full h-full">
+                        </a>
+                    </div>
+                <?php endif; ?>
+                <?php if (!empty($post_data['main_content'])) : ?>
+                    <div class="htmlchars">
+                        <?php echo wp_kses_post($post_data['main_content']); ?>
+                    </div>
+                <?php else : ?>
+                    <div class="htmlchars">
+                        <?php the_content(); ?>
+                    </div>
+                <?php endif; ?>
+
+
                 <?php if (!empty($post_data['gallery']) && count($post_data['gallery']) > 1) : ?>
-                    <div class="md:grid-cols-3 lg:grid-cols-4 gallery grid grid-cols-2 gap-5 mb-8">
+                    <div class="mt-5 md:grid-col-3 lg:grid-cols-4 gallery grid grid-cols-2 gap-5">
                         <?php foreach ($post_data['gallery'] as $image) : ?>
                             <div class="relative rounded-[10px] h-[180px] overflow-hidden">
                                 <a data-fslightbox="gallery" href="<?php echo $image['full_url']; ?>">
@@ -47,24 +67,8 @@ $template_uri = get_template_directory_uri();
                             </div>
                         <?php endforeach; ?>
                     </div>
-                <?php elseif (!empty($post_data['cover_image']['url'])) : ?>
-                    <div class="rounded-[10px] h-[300px] lg:h-[480px] overflow-hidden mb-8">
-                        <a data-fslightbox="gallery" href="<?php echo $post_data['cover_image']['url']; ?>">
-                            <img src="<?php echo $post_data['cover_image']['url']; ?>"
-                                alt="<?php echo $post_data['cover_image']['alt']; ?>"
-                                class="object-cover w-full h-full">
-                        </a>
-                    </div>
                 <?php endif; ?>
-                <?php if (!empty($post_data['main_content'])) : ?>
-                    <div class="prose prose-lg max-w-none">
-                        <?php echo wp_kses_post($post_data['main_content']); ?>
-                    </div>
-                <?php else : ?>
-                    <div class="prose prose-lg max-w-none">
-                        <?php the_content(); ?>
-                    </div>
-                <?php endif; ?>
+
             </div>
         </div>
 <?php endwhile;
