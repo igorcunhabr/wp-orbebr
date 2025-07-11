@@ -59,3 +59,12 @@ function meu_tema_setup_and_cleanup()
   add_filter('show_admin_bar', '__return_false');
 }
 add_action('after_setup_theme', 'meu_tema_setup_and_cleanup');
+
+/**
+ * Carrega o textdomain para internacionalização do tema.
+ */
+function meu_tema_carregar_textdomain()
+{
+  load_theme_textdomain('textdomain', get_template_directory() . '/languages');
+}
+add_action('after_setup_theme', 'meu_tema_carregar_textdomain');

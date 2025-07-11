@@ -43,14 +43,13 @@ $card_template_exists = locate_template($card_template_path);
                 <p class="text-base text-gray-500"><?php _e('Assim que tivermos novidades, você verá nossas certificações incríveis por aqui!', 'textdomain'); ?></p>
             </div>
         <?php endif; ?>
-
-        <!-- Paginação -->
-        <?php
-        // Renderiza o componente de paginação reutilizável
-        renderizar_paginacao($cert_query);
-        ?>
-
     </div>
+
+    <!-- Paginação -->
+    <?php
+    // Renderiza o componente de paginação reutilizável
+    renderizar_paginacao($cert_query);
+    ?>
 </div>
 
 <?php wp_reset_postdata(); ?>
