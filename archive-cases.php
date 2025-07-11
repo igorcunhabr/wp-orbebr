@@ -5,7 +5,7 @@
  */
 
 // Define o título personalizado para o header interno
-ThemeHelpers::definir_titulo_pagina('Cases');
+ThemeHelpers::definir_titulo_pagina(__('Cases', 'textdomain'));
 
 get_header();
 
@@ -41,8 +41,8 @@ $card_template_exists = locate_template($card_template_path);
             <?php endwhile; ?>
         <?php else : ?>
             <div class="text-center py-10">
-                <h2 class="text-2xl font-medium text-gray-600">Nenhum case encontrado</h2>
-                <p class="text-lg text-gray-500 mt-4">Não há cases publicados no momento.</p>
+                <h2 class="text-2xl font-medium text-gray-600"><?php _e('Nenhum case encontrado', 'textdomain'); ?></h2>
+                <p class="text-lg text-gray-500 mt-4"><?php _e('Não há cases publicados no momento.', 'textdomain'); ?></p>
             </div>
         <?php endif; ?>
     </div>

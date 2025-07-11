@@ -115,8 +115,8 @@ $servicos_query = criar_query('servicos', 6, [
 
 <section class="py-14">
   <div class="container">
-    <h2 id="services-title" class="text-white text-[42px] text-center mb-6">COMO PODEMOS
-      <span class="font-bold">AJUDAR?</span>
+    <h2 id="services-title" class="text-white text-[42px] text-center mb-6"><?php _e('COMO PODEMOS', 'textdomain'); ?>
+      <span class="font-bold"><?php _e('AJUDAR?', 'textdomain'); ?></span>
     </h2>
 
     <div class="md:grid-cols-2 lg:grid-cols-3 gap-7 grid grid-cols-1">
@@ -164,8 +164,8 @@ $servicos_query = criar_query('servicos', 6, [
 <section class="py-14">
   <div class="container">
     <div id="forms-title" class="w-full max-w-[640px] m-auto mb-5 text-center">
-      <span class="text-zinc-500 text-base font-normal">VAMOS TOMAR UM CAFÉ?</span>
-      <h2 class="text-3xl font-bold text-indigo-900">FALE COM UM DE NOSSOS ESPECIALISTAS</h2>
+      <span class="text-zinc-500 text-base font-normal"><?php _e('VAMOS TOMAR UM CAFÉ?', 'textdomain'); ?></span>
+      <h2 class="text-3xl font-bold text-indigo-900"><?php _e('FALE COM UM DE NOSSOS ESPECIALISTAS', 'textdomain'); ?></h2>
     </div>
 
     <div class="w-full max-w-[770px] m-auto">

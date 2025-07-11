@@ -38,8 +38,8 @@ $card_template_exists = locate_template($card_template_path);
         <?php else : ?>
             <!-- Mensagem quando não há certificações -->
             <div class="text-center py-10">
-                <h2 class="text-2xl font-medium text-gray-600 mb-4">Nenhuma certificação encontrada</h2>
-                <p class="text-lg text-gray-500">Ainda não temos certificações publicadas.</p>
+                <h2 class="text-2xl font-medium text-gray-600 mb-4"><?php _e('Nenhuma certificação encontrada', 'textdomain'); ?></h2>
+                <p class="text-lg text-gray-500"><?php _e('Ainda não temos certificações publicadas.', 'textdomain'); ?></p>
             </div>
         <?php endif; ?>
 

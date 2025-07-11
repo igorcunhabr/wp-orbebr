@@ -5,7 +5,7 @@ if (!defined('ABSPATH')) exit;
  */
 
 // Define o título personalizado para o header interno
-ThemeHelpers::definir_titulo_pagina('Blogs');
+ThemeHelpers::definir_titulo_pagina(__('Blogs', 'textdomain'));
 
 get_header();
 

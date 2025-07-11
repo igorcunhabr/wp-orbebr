@@ -5,7 +5,7 @@
  */
 
 // Define o título personalizado para o header interno
-ThemeHelpers::definir_titulo_pagina('Trabalhe com a gente');
+ThemeHelpers::definir_titulo_pagina(__('Trabalhe com a gente', 'textdomain'));
 
 get_header();
 
@@ -69,7 +69,7 @@ $card_template_exists = locate_template($card_template_path);
             <?php endwhile; ?>
         <?php else : ?>
             <div class="col-span-full text-center py-10">
-                <p class="text-gray-500 text-lg">Nenhum membro do time encontrado.</p>
+                <p class="text-gray-500 text-lg"><?php _e('Nenhum membro do time encontrado.', 'textdomain'); ?></p>
             </div>
         <?php endif; ?>
     </div>
@@ -83,8 +83,8 @@ $card_template_exists = locate_template($card_template_path);
     <div class="w-full mt-16">
         <div class="max-w-[900px] bg-black rounded-[20px] p-10 m-auto">
             <div class="mb-5 text-center">
-                <span class="text-slate-200 text-base font-normal">QUER FAZER PARTE DA EQUIPE?</span>
-                <h3 class="text-amber-400 text-3xl font-bold text-center">MANDA UMA MENSAGEM</h3>
+                <span class="text-slate-200 text-base font-normal"><?php _e('QUER FAZER PARTE DA EQUIPE?', 'textdomain'); ?></span>
+                <h3 class="text-amber-400 text-3xl font-bold text-center"><?php _e('MANDA UMA MENSAGEM', 'textdomain'); ?></h3>
             </div>
 
             <?php echo do_shortcode('[contact-form-7 id="af58837" title="Trabalhe Conb"]'); ?>

@@ -1,0 +1,291 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Orbe Brasil\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-11 18:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.0; wp-6.8.1; php-8.4.10\n"
+"X-Domain: textdomain"
+
+#: template-parts/pagination/pagination.php:24
+msgid "&laquo; Anterior"
+msgstr ""
+
+#: inc/custom-post-types.php:113
+msgid "Adicionar Novo"
+msgstr ""
+
+#: inc/custom-post-types.php:112
+#, php-format
+msgid "Adicionar Novo %s"
+msgstr ""
+
+#: archive-certificacoes.php:42
+msgid "Ainda não temos certificações publicadas."
+msgstr ""
+
+#: page-home.php:119
+msgid "AJUDAR?"
+msgstr ""
+
+#: template-parts/pagination/pagination-simple.php:53
+msgid "Anterior"
+msgstr ""
+
+#: inc/custom-post-types.php:108
+#, php-format
+msgid "Arquivos de %s"
+msgstr ""
+
+#: archive-clientes.php:60
+msgid ""
+"Assim que tivermos novidades, você verá nossos clientes incríveis por aqui!"
+msgstr ""
+
+#: inc/custom-post-types.php:109
+#, php-format
+msgid "Atributos de %s"
+msgstr ""
+
+#: inc/custom-post-types.php:116
+#, php-format
+msgid "Atualizar %s"
+msgstr ""
+
+#: archive-blogs.php:8
+msgid "Blogs"
+msgstr ""
+
+#: archive-blogs.php:28
+msgid "Buscar por"
+msgstr ""
+
+#: archive-cases.php:8
+msgid "Cases"
+msgstr ""
+
+#: page-home.php:118
+msgid "COMO PODEMOS"
+msgstr ""
+
+#: template-parts/footer/site-footer.php:66
+msgid "Contatos"
+msgstr ""
+
+#: inc/custom-post-types.php:123
+msgid "Definir imagem em destaque"
+msgstr ""
+
+#: 404.php:13
+msgid "Desculpe, mas a página que você procura não existe ou foi removida."
+msgstr ""
+
+#: inc/custom-post-types.php:115
+#, php-format
+msgid "Editar %s"
+msgstr ""
+
+#: inc/custom-post-types.php:127
+#, php-format
+msgid "Enviado para este %s"
+msgstr ""
+
+#: page-home.php:168
+msgid "FALE COM UM DE NOSSOS ESPECIALISTAS"
+msgstr ""
+
+#: inc/custom-post-types.php:130
+#, php-format
+msgid "Filtrar lista de %s"
+msgstr ""
+
+#. Author URI of the theme
+msgid "https://igorcunha.com.br"
+msgstr ""
+
+#. URI of the theme
+msgid "https://orbebrasil.com"
+msgstr ""
+
+#. Author of the theme
+msgid "Igor Cunha"
+msgstr ""
+
+#: single-cases.php:30 single-blogs.php:30
+msgid "Imagem da galeria"
+msgstr ""
+
+#: inc/custom-post-types.php:122
+msgid "Imagem em destaque"
+msgstr ""
+
+#: inc/custom-post-types.php:126
+#, php-format
+msgid "Inserir em %s"
+msgstr ""
+
+#: inc/custom-post-types.php:128
+#, php-format
+msgid "Lista de %s"
+msgstr ""
+
+#: template-parts/content/card-cases.php:39
+msgid "Mais detalhes"
+msgstr ""
+
+#: archive-teams.php:87
+msgid "MANDA UMA MENSAGEM"
+msgstr ""
+
+#: inc/menus.php:15
+msgid "Menu Principal"
+msgstr ""
+
+#: inc/menus.php:16
+msgid "Menu Rodapé"
+msgstr ""
+
+#: inc/custom-post-types.php:129
+#, php-format
+msgid "Navegação da lista de %s"
+msgstr ""
+
+#: template-parts/pagination/pagination-simple.php:43
+#: template-parts/pagination/pagination.php:73
+msgid "Navegação de páginas"
+msgstr ""
+
+#: archive-cases.php:44
+msgid "Nenhum case encontrado"
+msgstr ""
+
+#: archive-clientes.php:59
+msgid "Nenhum cliente encontrado."
+msgstr ""
+
+#: archive-teams.php:72
+msgid "Nenhum membro do time encontrado."
+msgstr ""
+
+#: archive-certificacoes.php:41
+msgid "Nenhuma certificação encontrada"
+msgstr ""
+
+#: inc/custom-post-types.php:114
+#, php-format
+msgid "Novo %s"
+msgstr ""
+
+#: inc/custom-post-types.php:120
+msgid "Não encontrado"
+msgstr ""
+
+#: inc/custom-post-types.php:121
+msgid "Não encontrado na lixeira"
+msgstr ""
+
+#: archive-blogs.php:70
+msgid "Não existem postagens com o termo pesquisado."
+msgstr ""
+
+#: archive-blogs.php:59
+msgid "Não existem postagens disponíveis no momento."
+msgstr ""
+
+#: archive-cases.php:45
+msgid "Não há cases publicados no momento."
+msgstr ""
+
+#: archive-clientes.php:58
+msgid "Ooops..."
+msgstr ""
+
+#: archive-blogs.php:59 archive-blogs.php:70
+msgid "Ops!"
+msgstr ""
+
+#. Name of the theme
+msgid "Orbe Brasil"
+msgstr ""
+
+#: inc/custom-post-types.php:110
+#, php-format
+msgid "Parent %s:"
+msgstr ""
+
+#: inc/custom-post-types.php:119
+#, php-format
+msgid "Pesquisar %s"
+msgstr ""
+
+#: archive-clientes.php:26
+msgid "Post type \"clientes\" não está registrado."
+msgstr ""
+
+#: template-parts/pagination/pagination-simple.php:118
+msgid "Próximo"
+msgstr ""
+
+#: template-parts/pagination/pagination.php:25
+msgid "Próximo &raquo;"
+msgstr ""
+
+#. Name of the template
+#: page-home.php:3
+msgid "Página Inicial"
+msgstr ""
+
+#: 404.php:12
+msgid "Página não encontrada"
+msgstr ""
+
+#: archive-teams.php:86
+msgid "QUER FAZER PARTE DA EQUIPE?"
+msgstr ""
+
+#: inc/custom-post-types.php:124
+msgid "Remover imagem em destaque"
+msgstr ""
+
+#. Description of the theme
+msgid "Tema WordPress base moderno e otimizado"
+msgstr ""
+
+#: inc/custom-post-types.php:111
+#, php-format
+msgid "Todos os %s"
+msgstr ""
+
+#: template-parts/footer/site-footer.php:96
+msgid "Todos os direitos reservados."
+msgstr ""
+
+#: archive-teams.php:8
+msgid "Trabalhe com a gente"
+msgstr ""
+
+#: inc/custom-post-types.php:125
+msgid "Usar como imagem em destaque"
+msgstr ""
+
+#: page-home.php:167
+msgid "VAMOS TOMAR UM CAFÉ?"
+msgstr ""
+
+#: inc/custom-post-types.php:117 inc/custom-post-types.php:118
+#, php-format
+msgid "Ver %s"
+msgstr ""
+
+#: 404.php:15
+msgid "Voltar para a Home"
+msgstr ""

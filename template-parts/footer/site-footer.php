@@ -63,7 +63,7 @@ foreach ($social_networks_config as $network) {
         </div>
 
         <div>
-          <h2 class="text-white text-[22px] font-normal">Contatos</h2>
+          <h2 class="text-white text-[22px] font-normal"><?php _e('Contatos', 'textdomain'); ?></h2>
 
           <?php if (obter_campo_acf('config_telefone', 'option')) : ?>
             <p class="text-lg font-light leading-7 text-white"><?php echo esc_html(obter_campo_acf('config_telefone', 'option')); ?></p>
@@ -93,6 +93,6 @@ foreach ($social_networks_config as $network) {
   </div>
 
   <div class="py-3 text-center">
-    <p class="text-base font-normal text-black">Copyright © 2024. Todos os direitos reservados.</p>
+    <p class="text-base font-normal text-black">&copy; 2024. <?php _e('Todos os direitos reservados.', 'textdomain'); ?></p>
   </div>
 </footer>
