@@ -87,8 +87,7 @@ $card_template_exists = locate_template($card_template_path);
                 <h3 class="text-amber-400 text-3xl font-bold text-center">MANDA UMA MENSAGEM</h3>
             </div>
 
-            formulario aqui!
-
+            <?php echo do_shortcode('[contact-form-7 id="af58837" title="Trabalhe Conb"]'); ?>
         </div>
     </div>
 </div>
