@@ -524,6 +524,33 @@ div {
   background-color: #ffba30;
 }
 
+/* Estilo base da resposta */
+.wpcf7-response-output {
+  text-align: center;
+  padding: 15px 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Mensagem de sucesso */
+.wpcf7-mail-sent-ok {
+  background-color: #e6ffed;
+  color: #267a3c;
+  border: 2px solid #267a3c;
+}
+
+/* Mensagem de erro geral (falha ao enviar, campos inválidos, etc.) */
+.wpcf7-validation-errors,
+.wpcf7-mail-sent-ng,
+.wpcf7-acceptance-missing {
+  background-color: #ffe6e6;
+  color: #a12626;
+  border: 2px solid #a12626;
+}
+
 /* =========================================================
    FIM DO ARQUIVO
    ========================================================= */
