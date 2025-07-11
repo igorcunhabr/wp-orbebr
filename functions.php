@@ -23,6 +23,7 @@ require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/seo.php';
 require_once get_template_directory() . '/inc/queries.php';
 require_once get_template_directory() . '/inc/uploads.php';
+require_once get_template_directory() . '/inc/plugins.php';
 
 // ===================================================================
 // [OTIMIZAÇÃO DE FONTES]
