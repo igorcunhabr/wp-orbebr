@@ -13,7 +13,7 @@ get_header();
 // [INICIALIZAÇÃO]
 // ===================================================================
 $paged = get_query_var('paged') ?: 1;
-$blogs_query = criar_query_otimizada('blogs', 8, ['paged' => $paged]);
+$blogs_query = criar_query_otimizada('blogs', null, ['paged' => $paged]);
 
 $card_template_path   = 'template-parts/content/card-blog.php';
 $card_template_exists = locate_template($card_template_path);

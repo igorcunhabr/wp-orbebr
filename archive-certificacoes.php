@@ -13,7 +13,7 @@ get_header();
 // ===================================================================
 
 $paged = get_query_var('paged') ?: 1;
-$cert_query = criar_query_otimizada('certificacoes', 8, ['paged' => $paged]);
+$cert_query = criar_query_otimizada('certificacoes', null, ['paged' => $paged]);
 
 // Verifica se o card de certificação existe para evitar erro em tempo de execução
 $card_template_path   = 'template-parts/content/card-certificacoes.php';

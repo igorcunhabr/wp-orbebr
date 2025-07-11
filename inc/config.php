@@ -91,9 +91,9 @@ class ThemeConfig
         'blogs'       => 8,
         'cases'       => 6,
         'servicos'    => 6,
-        'clientes'    => 12,
-        'certificacoes' => 12,
-        'teams'       => 8,
+        'clientes'    => 10,
+        'certificacoes' => 10,
+        'teams'       => 10,
         'banners'     => 10,
     ];
 

@@ -15,7 +15,7 @@ get_header();
 // ===================================================================
 
 $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-$cases_query = criar_query_otimizada('cases', 8, [
+$cases_query = criar_query_otimizada('cases', null, [
     'paged'    => $paged,
     'orderby'    => 'menu_order',
     'order'      => 'ASC'

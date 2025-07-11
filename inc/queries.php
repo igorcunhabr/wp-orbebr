@@ -236,6 +236,7 @@ add_action('pre_get_posts', [ThemeQueries::class, 'aplicar_ordenacao_personaliza
 // Funções globais para facilitar o uso das queries
 // ===================================================================
 
+
 /**
  * Cria query otimizada
  */

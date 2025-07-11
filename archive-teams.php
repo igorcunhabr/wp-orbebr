@@ -15,7 +15,7 @@ get_header();
 // ===================================================================
 
 $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-$teams_query = criar_query_otimizada('teams', 10, ['paged' => $paged]);
+$teams_query = criar_query_otimizada('teams', null, ['paged' => $paged]);
 
 // Verifica se o card de team existe para evitar erro em tempo de execução
 $card_template_path   = 'template-parts/content/card-team.php';
