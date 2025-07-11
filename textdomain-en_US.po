@@ -3,12 +3,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbe Brasil\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-11 18:57+0000\n"
+"POT-Creation-Date: 2025-07-11 19:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
-"Language: \n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Language: en_US\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,274 +18,282 @@ msgstr ""
 
 #: template-parts/pagination/pagination.php:24
 msgid "&laquo; Anterior"
-msgstr ""
+msgstr "&laquo; Previous"
 
 #: inc/custom-post-types.php:113
 msgid "Adicionar Novo"
-msgstr ""
+msgstr "Add New"
 
 #: inc/custom-post-types.php:112
 #, php-format
 msgid "Adicionar Novo %s"
-msgstr ""
-
-#: archive-certificacoes.php:42
-msgid "Ainda não temos certificações publicadas."
-msgstr ""
+msgstr "Add New %s"
 
 #: page-home.php:119
 msgid "AJUDAR?"
-msgstr ""
+msgstr "HELP?"
 
 #: template-parts/pagination/pagination-simple.php:53
 msgid "Anterior"
-msgstr ""
+msgstr "Previous"
 
 #: inc/custom-post-types.php:108
 #, php-format
 msgid "Arquivos de %s"
-msgstr ""
+msgstr "%s Archives"
+
+#: archive-certificacoes.php:43
+msgid "Assim que tivermos novidades, você verá nossas certificações incríveis por aqui!"
+msgstr "As soon as we have news, you will see our amazing certifications here!"
+
+#: archive-blogs.php:44
+msgid "Assim que tivermos novidades, você verá nossas postagens incríveis por aqui!"
+msgstr "As soon as we have news, you will see our amazing posts here!"
+
+#: archive-teams.php:44
+msgid "Assim que tivermos novidades, você verá nosso time incrível por aqui!"
+msgstr "As soon as we have news, you will see our amazing team here!"
 
 #: archive-clientes.php:60
-msgid ""
-"Assim que tivermos novidades, você verá nossos clientes incríveis por aqui!"
-msgstr ""
+msgid "Assim que tivermos novidades, você verá nossos clientes incríveis por aqui!"
+msgstr "As soon as we have news, you will see our amazing clients here!"
 
 #: inc/custom-post-types.php:109
 #, php-format
 msgid "Atributos de %s"
-msgstr ""
+msgstr "%s Attributes"
 
 #: inc/custom-post-types.php:116
 #, php-format
 msgid "Atualizar %s"
-msgstr ""
+msgstr "Update %s"
 
 #: archive-blogs.php:8
 msgid "Blogs"
-msgstr ""
+msgstr "Blogs"
 
 #: archive-blogs.php:28
 msgid "Buscar por"
-msgstr ""
+msgstr "Search for"
 
 #: archive-cases.php:8
 msgid "Cases"
-msgstr ""
+msgstr "Cases"
 
 #: page-home.php:118
 msgid "COMO PODEMOS"
-msgstr ""
+msgstr "HOW CAN WE"
 
 #: template-parts/footer/site-footer.php:66
 msgid "Contatos"
-msgstr ""
+msgstr "Contacts"
 
 #: inc/custom-post-types.php:123
 msgid "Definir imagem em destaque"
-msgstr ""
+msgstr "Set featured image"
 
 #: 404.php:13
 msgid "Desculpe, mas a página que você procura não existe ou foi removida."
-msgstr ""
+msgstr "Sorry, but the page you are looking for does not exist or has been removed."
 
 #: inc/custom-post-types.php:115
 #, php-format
 msgid "Editar %s"
-msgstr ""
+msgstr "Edit %s"
 
 #: inc/custom-post-types.php:127
 #, php-format
 msgid "Enviado para este %s"
-msgstr ""
+msgstr "Sent to this %s"
 
 #: page-home.php:168
 msgid "FALE COM UM DE NOSSOS ESPECIALISTAS"
-msgstr ""
+msgstr "TALK TO ONE OF OUR SPECIALISTS"
 
 #: inc/custom-post-types.php:130
 #, php-format
 msgid "Filtrar lista de %s"
-msgstr ""
+msgstr "Filter %s list"
 
 #. Author URI of the theme
 msgid "https://igorcunha.com.br"
-msgstr ""
+msgstr "https://igorcunha.com.br"
 
 #. URI of the theme
 msgid "https://orbebrasil.com"
-msgstr ""
+msgstr "https://orbebrasil.com"
 
 #. Author of the theme
 msgid "Igor Cunha"
-msgstr ""
+msgstr "Igor Cunha"
 
 #: single-cases.php:30 single-blogs.php:30
 msgid "Imagem da galeria"
-msgstr ""
+msgstr "Gallery image"
 
 #: inc/custom-post-types.php:122
 msgid "Imagem em destaque"
-msgstr ""
+msgstr "Featured image"
 
 #: inc/custom-post-types.php:126
 #, php-format
 msgid "Inserir em %s"
-msgstr ""
+msgstr "Insert into %s"
 
 #: inc/custom-post-types.php:128
 #, php-format
 msgid "Lista de %s"
-msgstr ""
+msgstr "%s list"
 
 #: template-parts/content/card-cases.php:39
 msgid "Mais detalhes"
-msgstr ""
+msgstr "More details"
 
-#: archive-teams.php:87
+#: archive-teams.php:59
 msgid "MANDA UMA MENSAGEM"
-msgstr ""
+msgstr "SEND A MESSAGE"
 
 #: inc/menus.php:15
 msgid "Menu Principal"
-msgstr ""
+msgstr "Main Menu"
 
 #: inc/menus.php:16
 msgid "Menu Rodapé"
-msgstr ""
+msgstr "Footer Menu"
 
 #: inc/custom-post-types.php:129
 #, php-format
 msgid "Navegação da lista de %s"
-msgstr ""
+msgstr "%s list navigation"
 
 #: template-parts/pagination/pagination-simple.php:43
 #: template-parts/pagination/pagination.php:73
 msgid "Navegação de páginas"
-msgstr ""
+msgstr "Page navigation"
 
 #: archive-cases.php:44
 msgid "Nenhum case encontrado"
-msgstr ""
+msgstr "No case found"
 
 #: archive-clientes.php:59
 msgid "Nenhum cliente encontrado."
-msgstr ""
+msgstr "No client found."
 
-#: archive-teams.php:72
+#: archive-teams.php:43
 msgid "Nenhum membro do time encontrado."
-msgstr ""
+msgstr "No team member found."
 
-#: archive-certificacoes.php:41
-msgid "Nenhuma certificação encontrada"
-msgstr ""
+#: archive-certificacoes.php:42
+msgid "Nenhuma certificação encontrada."
+msgstr "No certification found."
+
+#: archive-blogs.php:43
+msgid "Nenhuma postagem encontrada."
+msgstr "No post found."
 
 #: inc/custom-post-types.php:114
 #, php-format
 msgid "Novo %s"
-msgstr ""
+msgstr "New %s"
 
 #: inc/custom-post-types.php:120
 msgid "Não encontrado"
-msgstr ""
+msgstr "Not found"
 
 #: inc/custom-post-types.php:121
 msgid "Não encontrado na lixeira"
-msgstr ""
+msgstr "Not found in trash"
 
-#: archive-blogs.php:70
+#: archive-blogs.php:54
 msgid "Não existem postagens com o termo pesquisado."
-msgstr ""
-
-#: archive-blogs.php:59
-msgid "Não existem postagens disponíveis no momento."
-msgstr ""
+msgstr "There are no posts with the searched term."
 
 #: archive-cases.php:45
 msgid "Não há cases publicados no momento."
-msgstr ""
+msgstr "There are no cases published at the moment."
 
+#: archive-certificacoes.php:41 archive-blogs.php:42 archive-teams.php:42
 #: archive-clientes.php:58
 msgid "Ooops..."
-msgstr ""
+msgstr "Ooops..."
 
-#: archive-blogs.php:59 archive-blogs.php:70
+#: archive-blogs.php:54
 msgid "Ops!"
-msgstr ""
+msgstr "Oops!"
 
 #. Name of the theme
 msgid "Orbe Brasil"
-msgstr ""
+msgstr "Orbe Brasil"
 
 #: inc/custom-post-types.php:110
 #, php-format
 msgid "Parent %s:"
-msgstr ""
+msgstr "Parent %s:"
 
 #: inc/custom-post-types.php:119
 #, php-format
 msgid "Pesquisar %s"
-msgstr ""
+msgstr "Search %s"
 
 #: archive-clientes.php:26
 msgid "Post type \"clientes\" não está registrado."
-msgstr ""
+msgstr "Post type \"clientes\" is not registered."
 
 #: template-parts/pagination/pagination-simple.php:118
 msgid "Próximo"
-msgstr ""
+msgstr "Next"
 
 #: template-parts/pagination/pagination.php:25
 msgid "Próximo &raquo;"
-msgstr ""
+msgstr "Next &raquo;"
 
 #. Name of the template
 #: page-home.php:3
 msgid "Página Inicial"
-msgstr ""
+msgstr "Home Page"
 
 #: 404.php:12
 msgid "Página não encontrada"
-msgstr ""
+msgstr "Page not found"
 
-#: archive-teams.php:86
+#: archive-teams.php:58
 msgid "QUER FAZER PARTE DA EQUIPE?"
-msgstr ""
+msgstr "WANT TO JOIN THE TEAM?"
 
 #: inc/custom-post-types.php:124
 msgid "Remover imagem em destaque"
-msgstr ""
+msgstr "Remove featured image"
 
 #. Description of the theme
 msgid "Tema WordPress base moderno e otimizado"
-msgstr ""
+msgstr "Modern and optimized base WordPress theme"
 
 #: inc/custom-post-types.php:111
 #, php-format
 msgid "Todos os %s"
-msgstr ""
+msgstr "All %s"
 
 #: template-parts/footer/site-footer.php:96
 msgid "Todos os direitos reservados."
-msgstr ""
+msgstr "All rights reserved."
 
 #: archive-teams.php:8
 msgid "Trabalhe com a gente"
-msgstr ""
+msgstr "Work with us"
 
 #: inc/custom-post-types.php:125
 msgid "Usar como imagem em destaque"
-msgstr ""
+msgstr "Use as featured image"
 
 #: page-home.php:167
 msgid "VAMOS TOMAR UM CAFÉ?"
-msgstr ""
+msgstr "LET'S HAVE A COFFEE?"
 
 #: inc/custom-post-types.php:117 inc/custom-post-types.php:118
 #, php-format
 msgid "Ver %s"
-msgstr ""
+msgstr "View %s"
 
 #: 404.php:15
 msgid "Voltar para a Home"
-msgstr ""
+msgstr "Back to Home" 

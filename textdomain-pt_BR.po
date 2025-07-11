@@ -1,0 +1,299 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Orbe Brasil\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-11 19:02+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.0; wp-6.8.1; php-8.4.10\n"
+"X-Domain: textdomain"
+
+#: template-parts/pagination/pagination.php:24
+msgid "&laquo; Anterior"
+msgstr "&laquo; Anterior"
+
+#: inc/custom-post-types.php:113
+msgid "Adicionar Novo"
+msgstr "Adicionar Novo"
+
+#: inc/custom-post-types.php:112
+#, php-format
+msgid "Adicionar Novo %s"
+msgstr "Adicionar Novo %s"
+
+#: page-home.php:119
+msgid "AJUDAR?"
+msgstr "AJUDAR?"
+
+#: template-parts/pagination/pagination-simple.php:53
+msgid "Anterior"
+msgstr "Anterior"
+
+#: inc/custom-post-types.php:108
+#, php-format
+msgid "Arquivos de %s"
+msgstr "Arquivos de %s"
+
+#: archive-certificacoes.php:43
+msgid "Assim que tivermos novidades, você verá nossas certificações incríveis por aqui!"
+msgstr "Assim que tivermos novidades, você verá nossas certificações incríveis por aqui!"
+
+#: archive-blogs.php:44
+msgid "Assim que tivermos novidades, você verá nossas postagens incríveis por aqui!"
+msgstr "Assim que tivermos novidades, você verá nossas postagens incríveis por aqui!"
+
+#: archive-teams.php:44
+msgid "Assim que tivermos novidades, você verá nosso time incrível por aqui!"
+msgstr "Assim que tivermos novidades, você verá nosso time incrível por aqui!"
+
+#: archive-clientes.php:60
+msgid "Assim que tivermos novidades, você verá nossos clientes incríveis por aqui!"
+msgstr "Assim que tivermos novidades, você verá nossos clientes incríveis por aqui!"
+
+#: inc/custom-post-types.php:109
+#, php-format
+msgid "Atributos de %s"
+msgstr "Atributos de %s"
+
+#: inc/custom-post-types.php:116
+#, php-format
+msgid "Atualizar %s"
+msgstr "Atualizar %s"
+
+#: archive-blogs.php:8
+msgid "Blogs"
+msgstr "Blogs"
+
+#: archive-blogs.php:28
+msgid "Buscar por"
+msgstr "Buscar por"
+
+#: archive-cases.php:8
+msgid "Cases"
+msgstr "Cases"
+
+#: page-home.php:118
+msgid "COMO PODEMOS"
+msgstr "COMO PODEMOS"
+
+#: template-parts/footer/site-footer.php:66
+msgid "Contatos"
+msgstr "Contatos"
+
+#: inc/custom-post-types.php:123
+msgid "Definir imagem em destaque"
+msgstr "Definir imagem em destaque"
+
+#: 404.php:13
+msgid "Desculpe, mas a página que você procura não existe ou foi removida."
+msgstr "Desculpe, mas a página que você procura não existe ou foi removida."
+
+#: inc/custom-post-types.php:115
+#, php-format
+msgid "Editar %s"
+msgstr "Editar %s"
+
+#: inc/custom-post-types.php:127
+#, php-format
+msgid "Enviado para este %s"
+msgstr "Enviado para este %s"
+
+#: page-home.php:168
+msgid "FALE COM UM DE NOSSOS ESPECIALISTAS"
+msgstr "FALE COM UM DE NOSSOS ESPECIALISTAS"
+
+#: inc/custom-post-types.php:130
+#, php-format
+msgid "Filtrar lista de %s"
+msgstr "Filtrar lista de %s"
+
+#. Author URI of the theme
+msgid "https://igorcunha.com.br"
+msgstr "https://igorcunha.com.br"
+
+#. URI of the theme
+msgid "https://orbebrasil.com"
+msgstr "https://orbebrasil.com"
+
+#. Author of the theme
+msgid "Igor Cunha"
+msgstr "Igor Cunha"
+
+#: single-cases.php:30 single-blogs.php:30
+msgid "Imagem da galeria"
+msgstr "Imagem da galeria"
+
+#: inc/custom-post-types.php:122
+msgid "Imagem em destaque"
+msgstr "Imagem em destaque"
+
+#: inc/custom-post-types.php:126
+#, php-format
+msgid "Inserir em %s"
+msgstr "Inserir em %s"
+
+#: inc/custom-post-types.php:128
+#, php-format
+msgid "Lista de %s"
+msgstr "Lista de %s"
+
+#: template-parts/content/card-cases.php:39
+msgid "Mais detalhes"
+msgstr "Mais detalhes"
+
+#: archive-teams.php:59
+msgid "MANDA UMA MENSAGEM"
+msgstr "MANDA UMA MENSAGEM"
+
+#: inc/menus.php:15
+msgid "Menu Principal"
+msgstr "Menu Principal"
+
+#: inc/menus.php:16
+msgid "Menu Rodapé"
+msgstr "Menu Rodapé"
+
+#: inc/custom-post-types.php:129
+#, php-format
+msgid "Navegação da lista de %s"
+msgstr "Navegação da lista de %s"
+
+#: template-parts/pagination/pagination-simple.php:43
+#: template-parts/pagination/pagination.php:73
+msgid "Navegação de páginas"
+msgstr "Navegação de páginas"
+
+#: archive-cases.php:44
+msgid "Nenhum case encontrado"
+msgstr "Nenhum case encontrado"
+
+#: archive-clientes.php:59
+msgid "Nenhum cliente encontrado."
+msgstr "Nenhum cliente encontrado."
+
+#: archive-teams.php:43
+msgid "Nenhum membro do time encontrado."
+msgstr "Nenhum membro do time encontrado."
+
+#: archive-certificacoes.php:42
+msgid "Nenhuma certificação encontrada."
+msgstr "Nenhuma certificação encontrada."
+
+#: archive-blogs.php:43
+msgid "Nenhuma postagem encontrada."
+msgstr "Nenhuma postagem encontrada."
+
+#: inc/custom-post-types.php:114
+#, php-format
+msgid "Novo %s"
+msgstr "Novo %s"
+
+#: inc/custom-post-types.php:120
+msgid "Não encontrado"
+msgstr "Não encontrado"
+
+#: inc/custom-post-types.php:121
+msgid "Não encontrado na lixeira"
+msgstr "Não encontrado na lixeira"
+
+#: archive-blogs.php:54
+msgid "Não existem postagens com o termo pesquisado."
+msgstr "Não existem postagens com o termo pesquisado."
+
+#: archive-cases.php:45
+msgid "Não há cases publicados no momento."
+msgstr "Não há cases publicados no momento."
+
+#: archive-certificacoes.php:41 archive-blogs.php:42 archive-teams.php:42
+#: archive-clientes.php:58
+msgid "Ooops..."
+msgstr "Ooops..."
+
+#: archive-blogs.php:54
+msgid "Ops!"
+msgstr "Ops!"
+
+#. Name of the theme
+msgid "Orbe Brasil"
+msgstr "Orbe Brasil"
+
+#: inc/custom-post-types.php:110
+#, php-format
+msgid "Parent %s:"
+msgstr "Parent %s:"
+
+#: inc/custom-post-types.php:119
+#, php-format
+msgid "Pesquisar %s"
+msgstr "Pesquisar %s"
+
+#: archive-clientes.php:26
+msgid "Post type \"clientes\" não está registrado."
+msgstr "Post type \"clientes\" não está registrado."
+
+#: template-parts/pagination/pagination-simple.php:118
+msgid "Próximo"
+msgstr "Próximo"
+
+#: template-parts/pagination/pagination.php:25
+msgid "Próximo &raquo;"
+msgstr "Próximo &raquo;"
+
+#. Name of the template
+#: page-home.php:3
+msgid "Página Inicial"
+msgstr "Página Inicial"
+
+#: 404.php:12
+msgid "Página não encontrada"
+msgstr "Página não encontrada"
+
+#: archive-teams.php:58
+msgid "QUER FAZER PARTE DA EQUIPE?"
+msgstr "QUER FAZER PARTE DA EQUIPE?"
+
+#: inc/custom-post-types.php:124
+msgid "Remover imagem em destaque"
+msgstr "Remover imagem em destaque"
+
+#. Description of the theme
+msgid "Tema WordPress base moderno e otimizado"
+msgstr "Tema WordPress base moderno e otimizado"
+
+#: inc/custom-post-types.php:111
+#, php-format
+msgid "Todos os %s"
+msgstr "Todos os %s"
+
+#: template-parts/footer/site-footer.php:96
+msgid "Todos os direitos reservados."
+msgstr "Todos os direitos reservados."
+
+#: archive-teams.php:8
+msgid "Trabalhe com a gente"
+msgstr "Trabalhe com a gente"
+
+#: inc/custom-post-types.php:125
+msgid "Usar como imagem em destaque"
+msgstr "Usar como imagem em destaque"
+
+#: page-home.php:167
+msgid "VAMOS TOMAR UM CAFÉ?"
+msgstr "VAMOS TOMAR UM CAFÉ?"
+
+#: inc/custom-post-types.php:117 inc/custom-post-types.php:118
+#, php-format
+msgid "Ver %s"
+msgstr "Ver %s"
+
+#: 404.php:15
+msgid "Voltar para a Home"
+msgstr "Voltar para a Home" 
