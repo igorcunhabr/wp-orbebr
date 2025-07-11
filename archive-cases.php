@@ -15,7 +15,11 @@ get_header();
 // ===================================================================
 
 $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-$cases_query = criar_query_otimizada('cases', 8, ['paged' => $paged]);
+$cases_query = criar_query_otimizada('cases', 8, [
+    'paged'    => $paged,
+    'orderby'  => 'meta_value_num',
+    'meta_key' => 'ordem'
+]);
 
 // Verifica se o card de cases existe para evitar erro em tempo de execução
 $card_template_path   = 'template-parts/content/card-cases.php';

@@ -20,7 +20,10 @@ $banners_query = criar_query('banners', 5, [
   'order'   => 'ASC'
 ]);
 
-$cases_query = criar_query('cases', 10);
+$cases_query = criar_query('cases', 10, [
+  'orderby'  => 'meta_value_num',
+  'meta_key' => 'ordem'
+]);
 
 $servicos_query = criar_query('servicos', 6, [
   'orderby'  => 'meta_value_num',
