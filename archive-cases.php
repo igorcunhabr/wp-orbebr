@@ -17,8 +17,8 @@ get_header();
 $paged = get_query_var('paged') ? get_query_var('paged') : 1;
 $cases_query = criar_query_otimizada('cases', 8, [
     'paged'    => $paged,
-    'orderby'  => 'meta_value_num',
-    'meta_key' => 'ordem'
+    'orderby'    => 'menu_order',
+    'order'      => 'ASC'
 ]);
 
 // Verifica se o card de cases existe para evitar erro em tempo de execução

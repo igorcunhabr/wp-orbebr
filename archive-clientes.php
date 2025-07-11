@@ -27,7 +27,11 @@ if (!post_type_exists('clientes')) {
 }
 
 // Cria uma nova query em vez de usar query_posts para evitar conflitos
-$clientes_query = criar_query_otimizada('clientes', null, ['paged' => $paged]);
+$clientes_query = criar_query_otimizada('clientes', null, [
+    'paged' => $paged,
+    'orderby'    => 'menu_order',
+    'order'      => 'ASC'
+]);
 
 // Verifica se o card de clientes existe para evitar erro em tempo de execução
 $card_template_path   = 'template-parts/content/card-clientes.php';
@@ -50,8 +54,10 @@ $card_template_exists = locate_template($card_template_path);
             <?php endwhile; ?>
         <?php else : ?>
             <!-- Mensagem quando não há posts -->
-            <div class="col-span-full text-center py-10">
-                <p class="text-gray-600"><?php _e('Nenhum cliente encontrado.', 'textdomain'); ?></p>
+            <div class="col-span-full flex flex-col items-center justify-center py-16">
+                <span class="text-5xl font-extrabold text-[#FFD530] mb-4">Ooops...</span>
+                <p class="text-lg text-gray-700 font-medium mb-2">Nenhum cliente encontrado.</p>
+                <p class="text-base text-gray-500">Assim que tivermos novidades, você verá nossos clientes incríveis por aqui!</p>
             </div>
         <?php endif; ?>
     </div>

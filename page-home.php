@@ -16,18 +16,18 @@ get_header();
 $template_uri = get_template_directory_uri();
 
 $banners_query = criar_query('banners', 5, [
-  'orderby' => 'date',
-  'order'   => 'ASC'
+  'orderby'    => 'menu_order',
+  'order'      => 'ASC'
 ]);
 
 $cases_query = criar_query('cases', 10, [
-  'orderby'  => 'meta_value_num',
-  'meta_key' => 'ordem'
+  'orderby'    => 'menu_order',
+  'order'      => 'ASC'
 ]);
 
 $servicos_query = criar_query('servicos', 6, [
-  'orderby'  => 'meta_value_num',
-  'meta_key' => 'ordem'
+  'orderby'    => 'menu_order',
+  'order'      => 'ASC'
 ]);
 
 // ===================================================================
