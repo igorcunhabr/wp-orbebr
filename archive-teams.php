@@ -34,42 +34,14 @@ $card_template_exists = locate_template($card_template_path);
             <?php while ($teams_query->have_posts()) : $teams_query->the_post(); ?>
                 <?php if ($card_template_exists) : ?>
                     <?php get_template_part('template-parts/content/card-team'); ?>
-                <?php else : ?>
-                    <!-- Fallback caso o template não exista -->
-                    <article id="team-item-<?php the_ID(); ?>" class="team-item">
-                        <?php if (get_field('imagem')) : ?>
-                            <img class="w-full h-[260px] rounded-[20px] object-cover mb-3"
-                                src="<?php echo esc_url(get_field('imagem')['url']); ?>"
-                                alt="<?php echo esc_attr(get_field('imagem')['alt'] ?? get_the_title()); ?>"
-                                loading="lazy"
-                                decoding="async" />
-                        <?php endif; ?>
-
-                        <div class="flex flex-col gap-5">
-                            <div class="md:text-start flex flex-col gap-2 text-center">
-                                <div>
-                                    <h2 class="text-black text-[28px] font-medium"><?php the_title(); ?></h2>
-                                    <?php if (get_field('cargo')) : ?>
-                                        <p class="text-base font-normal text-black"><?php echo esc_html(get_field('cargo')); ?></p>
-                                    <?php endif; ?>
-                                </div>
-                                <span class="w-[100px] h-1 bg-amber-400 m-auto md:m-0"></span>
-                            </div>
-
-                            <?php if (get_field('descricao')) : ?>
-                                <div class="w-full md:max-w-[477px] text-lg font-normal text-black text-center md:text-start">
-                                    <div class="htmlchars">
-                                        <?php echo wp_kses_post(get_field('descricao')); ?>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    </article>
                 <?php endif; ?>
             <?php endwhile; ?>
         <?php else : ?>
-            <div class="col-span-full text-center py-10">
-                <p class="text-gray-500 text-lg"><?php _e('Nenhum membro do time encontrado.', 'textdomain'); ?></p>
+            <!-- Mensagem quando não há posts -->
+            <div class="col-span-full flex flex-col items-center justify-center py-16">
+                <span class="text-5xl font-extrabold text-[#FFD530] mb-4"><?php _e('Ooops...', 'textdomain'); ?></span>
+                <p class="text-lg text-gray-700 font-medium mb-2"><?php _e('Nenhum membro do time encontrado.', 'textdomain'); ?></p>
+                <p class="text-base text-gray-500"><?php _e('Assim que tivermos novidades, você verá nosso time incrível por aqui!', 'textdomain'); ?></p>
             </div>
         <?php endif; ?>
     </div>

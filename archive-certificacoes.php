@@ -36,10 +36,11 @@ $card_template_exists = locate_template($card_template_path);
 
             <?php endwhile; ?>
         <?php else : ?>
-            <!-- Mensagem quando não há certificações -->
-            <div class="text-center py-10">
-                <h2 class="text-2xl font-medium text-gray-600 mb-4"><?php _e('Nenhuma certificação encontrada', 'textdomain'); ?></h2>
-                <p class="text-lg text-gray-500"><?php _e('Ainda não temos certificações publicadas.', 'textdomain'); ?></p>
+            <!-- Mensagem quando não há posts -->
+            <div class="col-span-full flex flex-col items-center justify-center py-16">
+                <span class="text-5xl font-extrabold text-[#FFD530] mb-4"><?php _e('Ooops...', 'textdomain'); ?></span>
+                <p class="text-lg text-gray-700 font-medium mb-2"><?php _e('Nenhuma certificação encontrada.', 'textdomain'); ?></p>
+                <p class="text-base text-gray-500"><?php _e('Assim que tivermos novidades, você verá nossas certificações incríveis por aqui!', 'textdomain'); ?></p>
             </div>
         <?php endif; ?>
 
