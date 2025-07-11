@@ -39,6 +39,11 @@ class ThemeQueries
       'orderby' => 'date',
       'order'   => 'ASC'
     ],
+    // Adicionado para blogs: mais recentes primeiro
+    'blogs' => [
+      'orderby' => 'date',
+      'order'   => 'DESC'
+    ],
   ];
 
   /**
