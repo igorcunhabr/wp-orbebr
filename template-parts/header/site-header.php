@@ -110,10 +110,10 @@ foreach ($social_networks_config as $network) {
 
     <!-- Seletor de Idioma Desktop -->
     <div class="hidden lg:flex gap-2">
-      <a href="javascript:trocarIdioma('pt')" class="hover:opacity-65 transition-opacity" title="Português">
+      <a href="https://orbebrasil.com" class="hover:opacity-65 transition-opacity" title="Português">
         <img src="<?php echo esc_url($template_uri . '/assets/img/lang-pt.svg'); ?>" alt="Português">
       </a>
-      <a href="javascript:trocarIdioma('en')" class="hover:opacity-65 transition-opacity" title="English">
+      <a href="https://orbeuk.co.uk" target="_blank" class="hover:opacity-65 transition-opacity" title="English">
         <img src="<?php echo esc_url($template_uri . '/assets/img/lang-en.svg'); ?>" alt="English">
       </a>
     </div>
@@ -194,10 +194,10 @@ foreach ($social_networks_config as $network) {
 
       <!-- Seletor de Idioma Mobile -->
       <div class="flex justify-center gap-4 py-4 language-selector">
-        <a href="javascript:trocarIdioma('pt')" class="hover:opacity-65 transition-opacity" title="Português">
+        <a href="https://orbebrasil.com" class="hover:opacity-65 transition-opacity" title="Português">
           <img src="<?php echo esc_url($template_uri . '/assets/img/lang-pt.svg'); ?>" alt="Português">
         </a>
-        <a href="javascript:trocarIdioma('en')" class="hover:opacity-65 transition-opacity" title="English">
+        <a href="https://orbeuk.co.uk" target="_blank" class="hover:opacity-65 transition-opacity" title="English">
           <img src="<?php echo esc_url($template_uri . '/assets/img/lang-en.svg'); ?>" alt="English">
         </a>
       </div>

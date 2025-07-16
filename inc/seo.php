@@ -1,4 +1,6 @@
 <?php
+// eslint-disable-next-line
+// Este arquivo depende de funções globais do WordPress como site_url() e home_url().
 
 /**
  * Template Part para funcionalidades SEO do tema.
@@ -61,6 +63,11 @@ class ThemeSEO
     $default_image = self::obter_campo_acf('seo_padrao_imagem', 'option');
     $default_image_url = self::processar_imagem_acf($default_image);
 
+    // Fallback absoluto se não houver imagem padrão no ACF
+    if (empty($default_image_url)) {
+      $default_image_url = (function_exists('site_url') ? site_url() : home_url()) . '/assets/img/default.png';
+    }
+
     $seo_data['title'] = self::obter_campo_acf('seo_padrao_titulo', 'option') ?: get_bloginfo('name');
     $seo_data['description'] = self::obter_campo_acf('seo_padrao_descricao', 'option') ?: get_bloginfo('description');
     $seo_data['image'] = $default_image_url;
@@ -115,10 +122,20 @@ class ThemeSEO
 
     // Processa imagem SEO
     if ($seo_image) {
-      $seo_data['image'] = self::processar_imagem_acf($seo_image);
+      $img = self::processar_imagem_acf($seo_image);
+      if (!empty($img)) {
+        $seo_data['image'] = $img;
+      }
     } else {
       $thumb_url = get_the_post_thumbnail_url($post, 'full');
-      $seo_data['image'] = $thumb_url ?: $seo_data['image'];
+      if (!empty($thumb_url)) {
+        $seo_data['image'] = $thumb_url;
+      }
+    }
+
+    // Fallback absoluto se ainda não houver imagem
+    if (empty($seo_data['image'])) {
+      $seo_data['image'] = (function_exists('site_url') ? site_url() : home_url()) . '/assets/img/default.png';
     }
 
     return $seo_data;
@@ -275,18 +292,16 @@ class ThemeSEO
     echo "<meta property=\"og:site_name\" content=\"" . esc_attr($seo_data['site_name']) . "\">\n";
     echo "<meta property=\"og:type\" content=\"website\">\n";
 
-    if ($seo_data['image']) {
-      echo "<meta property=\"og:image\" content=\"" . esc_url($seo_data['image']) . "\">\n";
-    }
+    // Sempre exibe og:image, nunca vazio
+    $base_url = function_exists('site_url') ? site_url() : home_url();
+    $og_image = !empty($seo_data['image']) ? esc_url($seo_data['image']) : esc_url($base_url . '/assets/img/default.png');
+    echo "<meta property=\"og:image\" content=\"$og_image\">\n";
 
     // Twitter Card
     echo "<meta name=\"twitter:card\" content=\"summary_large_image\">\n";
     echo "<meta name=\"twitter:title\" content=\"" . esc_attr($seo_data['title']) . "\">\n";
     echo "<meta name=\"twitter:description\" content=\"" . esc_attr($seo_data['description']) . "\">\n";
-
-    if ($seo_data['image']) {
-      echo "<meta name=\"twitter:image\" content=\"" . esc_url($seo_data['image']) . "\">\n";
-    }
+    echo "<meta name=\"twitter:image\" content=\"$og_image\">\n";
   }
 }
 
