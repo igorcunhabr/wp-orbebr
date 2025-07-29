@@ -161,7 +161,7 @@ $servicos_query = criar_query('servicos', 6, [
 </section>
 </div><!-- fecha bg-black -->
 
-<section class="py-14">
+<!-- <section class="py-14">
   <div class="container">
     <div id="forms-title" class="w-full max-w-[640px] m-auto mb-5 text-center">
       <span class="text-zinc-500 text-base font-normal"><?php _e('VAMOS TOMAR UM CAFÉ?', 'textdomain'); ?></span>
@@ -172,7 +172,7 @@ $servicos_query = criar_query('servicos', 6, [
       <?php echo do_shortcode('[contact-form-7 id="2f9d491" title="Fale Conosco"]'); ?>
     </div>
   </div>
-</section>
+</section> -->
 
 <?php
 // Seção do time (apenas se houver imagem configurada)

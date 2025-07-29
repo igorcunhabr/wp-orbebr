@@ -52,7 +52,7 @@ $card_template_exists = locate_template($card_template_path);
     renderizar_paginacao($teams_query);
     ?>
 
-    <div class="w-full mt-16">
+    <!-- <div class="w-full mt-16">
         <div class="max-w-[900px] bg-black rounded-[20px] p-10 m-auto">
             <div class="mb-5 text-center">
                 <span class="text-slate-200 text-base font-normal"><?php _e('QUER FAZER PARTE DA EQUIPE?', 'textdomain'); ?></span>
@@ -61,7 +61,7 @@ $card_template_exists = locate_template($card_template_path);
 
             <?php echo do_shortcode('[contact-form-7 id="af58837" title="Trabalhe Conb"]'); ?>
         </div>
-    </div>
+    </div> -->
 </div>
 
 <?php wp_reset_postdata(); ?>
