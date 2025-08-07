@@ -1,7 +1,9 @@
 <div id="floating-buttons-container" class="fixed right-6 bottom-6 z-50 flex flex-col gap-3 transition-all duration-300 ease-out">
     <!-- Botão WhatsApp -->
+
+    <?php if (obter_campo_acf('config_whatsapp', 'option')) : ?>
     <a id="whatsapp-button"
-        href="https://wa.me/+5582998043446?text=Olá" 
+        href="<?php echo esc_html(obter_campo_acf('config_whatsapp', 'option')); ?>" 
         class="group relative w-14 h-14 bg-gradient-to-br from-[#25D366] to-[#128C7E] rounded-full flex items-center justify-center text-white shadow-xl hover:shadow-2xl transform hover:scale-110 transition-all duration-300 ease-out backdrop-blur-sm" 
         target="_blank"
         title="WhatsApp"
@@ -15,6 +17,7 @@
         <!-- Pulse animation -->
         <div class="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20"></div>
     </a>
+    <?php endif; ?>
 
     <!-- Botão Scroll to Top -->
     <a id="scroll-to-top"
