@@ -58,7 +58,7 @@
                 container.style.gap = '0';
                 
                 // Mover WhatsApp para baixo ocupando o espaço do scroll-to-top
-                whatsappBtn.style.transform = 'translateY(68px)'; // 56px (altura do botão) + 12px (gap)
+                whatsappBtn.style.transform = 'translateY(56px)'; // 56px (altura do botão) + 12px (gap)
             }
         }
         
