@@ -10,7 +10,7 @@ $descricao = obter_campo_acf('descricao', get_the_ID());
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('md:flex-row md:gap-8 md:items-center flex flex-col gap-4'); ?>>
     <?php if ($imagem_url) : ?>
-        <img class="w-full md:max-w-[370px] md:h-[310px] h-auto rounded-[20px] object-cover border"
+        <img class="w-full md:max-w-[370px] md:h-[310px] h-auto rounded-[20px] object-cover border border-[#e4ecf2]"
             src="<?php echo esc_url($imagem_url); ?>"
             alt="<?php echo esc_attr(get_the_title()); ?>"
             loading="lazy"
